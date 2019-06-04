@@ -1,3 +1,3 @@
-module JapanEtc
+module JapanETC
   VERSION = "0.1.0"
 end

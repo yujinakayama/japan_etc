@@ -1,6 +1,6 @@
 require "japan_etc/version"
 
-module JapanEtc
+module JapanETC
   class Error < StandardError; end
   # Your code goes here...
 end

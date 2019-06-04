@@ -5,7 +5,7 @@ require "japan_etc/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "japan_etc"
-  spec.version       = JapanEtc::VERSION
+  spec.version       = JapanETC::VERSION
   spec.authors       = ["Yuji Nakayama"]
   spec.email         = ["nkymyj@gmail.com"]
 

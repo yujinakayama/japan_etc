@@ -2,7 +2,6 @@
 
 require 'japan_etc/database_provider/base'
 require 'japan_etc/tollbooth'
-require 'japan_etc/util'
 require 'csv'
 require 'faraday'
 
@@ -15,8 +14,8 @@ module JapanETC
       def fetch_tollbooths
         rows.map do |row|
           Tollbooth.create(
-            road_number: Util.parse_integer_string(row[0]),
-            tollbooth_number: Util.parse_integer_string(row[1]),
+            road_number: row[0],
+            tollbooth_number: row[1],
             road_name: '首都高速道路',
             route_name: row[2],
             name: row[3],

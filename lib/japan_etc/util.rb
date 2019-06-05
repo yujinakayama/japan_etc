@@ -10,8 +10,15 @@ module JapanETC
       string.tr('Ａ-Ｚａ-ｚ０-９', 'A-Za-z0-9')
     end
 
-    def parse_integer_string(string)
-      Integer(string.sub(/\A0+/, ''))
+    def convert_to_integer(object)
+      case object
+      when Integer
+        object
+      when String
+        Integer(object.sub(/\A0+/, ''))
+      else
+        raise ArgumentError
+      end
     end
   end
 end

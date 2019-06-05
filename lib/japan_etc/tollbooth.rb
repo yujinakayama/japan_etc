@@ -53,10 +53,16 @@ module JapanETC
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do
-      def initialize(*)
-        super
+      include Util
+
+      def initialize(road_number, tollbooth_number)
+        road_number = convert_to_integer(road_number)
         raise ValidationError, '#road_number cannot be nil' if road_number.nil?
+
+        tollbooth_number = convert_to_integer(tollbooth_number)
         raise ValidationError, '#tollbooth_number cannot be nil' if tollbooth_number.nil?
+
+        super(road_number, tollbooth_number)
       end
     end
   end

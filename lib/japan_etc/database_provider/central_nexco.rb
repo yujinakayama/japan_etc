@@ -2,7 +2,6 @@
 
 require 'japan_etc/database_provider/base'
 require 'japan_etc/tollbooth'
-require 'japan_etc/util'
 require 'faraday'
 require 'pdf-reader'
 
@@ -48,8 +47,8 @@ module JapanETC
 
         identifiers.map do |identifier|
           Tollbooth.create(
-            road_number: Util.parse_integer_string(identifier.first),
-            tollbooth_number: Util.parse_integer_string(identifier.last),
+            road_number: identifier.first,
+            tollbooth_number: identifier.last,
             road_name: current_road_name,
             name: current_tollbooth_name
           )

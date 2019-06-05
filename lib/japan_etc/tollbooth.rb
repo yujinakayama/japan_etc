@@ -32,7 +32,8 @@ module JapanETC
       @name = normalize(name)
       @entrance_or_exit = entrance_or_exit
       @route_direction = route_direction
-      @note = nil
+
+      extract_note_from_name!
     end
 
     def ==(other)
@@ -51,6 +52,19 @@ module JapanETC
 
     def normalize(string)
       Util.convert_fullwidth_characters_to_halfwidth(string)
+    end
+
+    def extract_note_from_name!
+      @name = name.sub(/(?<head>.+?)?（(?<note>.+?)）(?<tail>.+)?/) do
+        match = Regexp.last_match
+
+        if match[:head] || match[:tail]
+          @note = match[:note]
+          "#{match[:head]}#{match[:tail]}"
+        else
+          match[:note]
+        end
+      end
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do

@@ -11,18 +11,20 @@ module JapanETC
     class CentralNEXCO < Base
       URL = 'https://highwaypost.c-nexco.co.jp/faq/etc/use/documents/190423-2etcriyoukanouic.pdf'
 
+      WHITESPACE = /[\s　]/.freeze
+
       TOLLBOOTH_LINE_PATTERN = /
         \A
         (?:
-          \s{,10}(?<road_name>[^\d\s（【]\S*)\s+
+          #{WHITESPACE}{,10}(?<road_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)#{WHITESPACE}+
           |
-          \s{,10}(?:[（【]\S+)\s+ # Obsolete road name
+          #{WHITESPACE}{,10}(?:[（【][^#{WHITESPACE}]+)#{WHITESPACE}+ # Obsolete road name
           |
-          \s{10,}
+          #{WHITESPACE}{10,}
         )
         (?:
-          (?<tollbooth_name>[^\d\s（【]\S*)
-          \s+
+          (?<tollbooth_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)
+          #{WHITESPACE}+
         )?
         (?<identifiers>\d{2}\s+\d{3}\b.*)
       /x.freeze

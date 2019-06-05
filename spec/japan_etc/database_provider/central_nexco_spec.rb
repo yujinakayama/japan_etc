@@ -109,6 +109,16 @@ module JapanETC
 
         expect(tollbooth.name).to eq('平井本線')
       end
+
+      it 'handles full-width whitespace properly' do
+        expect(find_tollbooth(9, 263)).to have_attributes(
+          road: an_object_having_attributes(
+            name: '臨港道路海田大橋',
+            route_name: nil
+          ),
+          name: '海田料金所'
+        )
+      end
     end
   end
 end

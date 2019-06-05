@@ -2,8 +2,8 @@
 
 module JapanETC
   module EntranceOrExit
-    ENTRANCE = :entrance
-    EXIT     = :exit
+    ENTRANCE = '入口'
+    EXIT     = '出口'
 
     def self.from(text)
       case text

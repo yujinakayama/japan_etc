@@ -2,12 +2,12 @@
 
 module JapanETC
   module RouteDirection
-    INBOUND          = :inbound
-    OUTBOUND         = :outbound
-    CLOCKWISE        = :clockwise
-    COUNTERCLOCKWISE = :counterclockwise
-    EAST             = :east
-    WEST             = :west
+    INBOUND          = '上り'
+    OUTBOUND         = '下り'
+    CLOCKWISE        = '外回り'
+    COUNTERCLOCKWISE = '内回り'
+    EAST             = '東行き'
+    WEST             = '西行き'
 
     def self.from(text)
       case text

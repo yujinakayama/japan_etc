@@ -41,6 +41,7 @@ module JapanETC
       extract_note_from_name!
       extract_route_direction_from_notes!
       extract_entrance_or_exit_from_notes!
+      extract_route_direction_from_name!
       extract_entrance_or_exit_from_name!
     end
 
@@ -103,10 +104,19 @@ module JapanETC
       end
     end
 
+    def extract_route_direction_from_name!
+      return if route_direction
+
+      name.sub!(/(?:上り|下り)/) do |match|
+        @route_direction = match == '上り' ? RouteDirection::INBOUND : RouteDirection::OUTBOUND
+        ''
+      end
+    end
+
     def extract_entrance_or_exit_from_name!
       return if entrance_or_exit
 
-      name.sub!(/(?:入口|料金所)\z/) do |match|
+      name.sub!(/(?:入口|料金所)/) do |match|
         @entrance_or_exit = match == '入口' ? EntranceOrExit::ENTRANCE : EntranceOrExit::EXIT
         ''
       end

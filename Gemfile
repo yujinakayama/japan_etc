@@ -6,10 +6,10 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  gem 'pry-byebug'
+  gem 'pry-byebug', '~> 3.7'
   gem 'rake', '~> 10.0'
-  gem 'rspec'
-  gem 'rubocop'
-  gem 'vcr'
-  gem 'webmock'
+  gem 'rspec', '~> 3.8'
+  gem 'rubocop', '~> 0.71'
+  gem 'vcr', '~> 5.0'
+  gem 'webmock', '~> 3.6'
 end

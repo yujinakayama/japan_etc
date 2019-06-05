@@ -25,6 +25,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 2.0'
-  spec.add_development_dependency 'faraday'
-  spec.add_development_dependency 'pdf-reader'
+  spec.add_development_dependency 'faraday', '~> 0.15'
+  spec.add_development_dependency 'pdf-reader', '~> 2.2'
 end

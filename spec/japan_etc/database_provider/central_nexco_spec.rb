@@ -116,7 +116,7 @@ module JapanETC
             name: '臨港道路海田大橋',
             route_name: nil
           ),
-          name: '海田料金所'
+          name: '海田'
         )
       end
     end

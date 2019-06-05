@@ -41,6 +41,7 @@ module JapanETC
       extract_note_from_name!
       extract_route_direction_from_notes!
       extract_entrance_or_exit_from_notes!
+      extract_entrance_or_exit_from_name!
     end
 
     def initialize_copy(original)
@@ -99,6 +100,15 @@ module JapanETC
         next false if entrance_or_exit
 
         @entrance_or_exit = EntranceOrExit.from(note)
+      end
+    end
+
+    def extract_entrance_or_exit_from_name!
+      return if entrance_or_exit
+
+      name.sub!(/(?:入口|料金所)\z/) do |match|
+        @entrance_or_exit = match == '入口' ? EntranceOrExit::ENTRANCE : EntranceOrExit::EXIT
+        ''
       end
     end
 

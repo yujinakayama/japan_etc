@@ -8,7 +8,9 @@ require 'japan_etc/util'
 
 module JapanETC
   class Tollbooth
-    attr_accessor :identifier, :road, :name, :entrance_or_exit, :route_direction, :note
+    include Util
+
+    attr_accessor :identifier, :road, :name, :entrance_or_exit, :route_direction, :notes
 
     def self.create(
       road_number:,
@@ -17,14 +19,15 @@ module JapanETC
       route_name: nil,
       name:,
       route_direction: nil,
-      entrance_or_exit: nil
+      entrance_or_exit: nil,
+      note: nil
     )
       identifier = Identifier.new(road_number, tollbooth_number)
       road = Road.new(road_name, route_name)
-      new(identifier, road, name, route_direction, entrance_or_exit)
+      new(identifier, road, name, route_direction, entrance_or_exit, note)
     end
 
-    def initialize(identifier, road, name, route_direction = nil, entrance_or_exit = nil)
+    def initialize(identifier, road, name, route_direction = nil, entrance_or_exit = nil, note = nil) # rubocop:disable Metrics/LineLength
       raise ValidationError if identifier.nil? || road.nil? || name.nil?
 
       @identifier = identifier
@@ -32,9 +35,12 @@ module JapanETC
       @name = normalize(name)
       @route_direction = route_direction
       @entrance_or_exit = entrance_or_exit
+      @notes = []
+      notes << normalize(note) if note
 
       extract_note_from_name!
-      extract_route_direction_from_note!
+      extract_route_direction_from_notes!
+      extract_entrance_or_exit_from_notes!
     end
 
     def initialize_copy(original)
@@ -53,11 +59,14 @@ module JapanETC
     end
 
     def to_a
-      [identifier.to_a, road.to_a, name, route_direction, entrance_or_exit, note].flatten
-    end
-
-    def normalize(string)
-      Util.convert_fullwidth_characters_to_halfwidth(string)
+      [
+        identifier.to_a,
+        road.to_a,
+        name,
+        route_direction,
+        entrance_or_exit,
+        notes.empty? ? nil : notes.join(' ')
+      ].flatten
     end
 
     def extract_note_from_name!
@@ -65,7 +74,7 @@ module JapanETC
         match = Regexp.last_match
 
         if match[:head] || match[:tail]
-          @note = match[:note]
+          notes.prepend(match[:note])
           "#{match[:head]}#{match[:tail]}"
         else
           match[:note]
@@ -73,11 +82,24 @@ module JapanETC
       end
     end
 
-    def extract_route_direction_from_note!
+    def extract_route_direction_from_notes!
       return if route_direction
 
-      @route_direction = RouteDirection.from(note)
-      @note = nil if route_direction
+      notes.reject! do |note|
+        next false if route_direction
+
+        @route_direction = RouteDirection.from(note)
+      end
+    end
+
+    def extract_entrance_or_exit_from_notes!
+      return if entrance_or_exit
+
+      notes.reject! do |note|
+        next false if entrance_or_exit
+
+        @entrance_or_exit = EntranceOrExit.from(note)
+      end
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do

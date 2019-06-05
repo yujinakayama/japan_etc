@@ -17,7 +17,7 @@ module JapanETC
       it 'extract the note from the name' do
         expect(tollbooth).to have_attributes(
           name: '外環三郷東',
-          note: '2018/6/2より「三郷中央」へ名称変更'
+          notes: ['2018/6/2より「三郷中央」へ名称変更']
         )
       end
     end
@@ -34,10 +34,10 @@ module JapanETC
         )
       end
 
-      it 'removes only the parentheses without extracting the content as anote' do
+      it 'removes only the parentheses without extracting the content as a note' do
         expect(tollbooth).to have_attributes(
           name: '鳥浜町本線',
-          note: nil
+          notes: []
         )
       end
     end

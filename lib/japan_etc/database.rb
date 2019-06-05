@@ -13,7 +13,7 @@ module JapanETC
       tollbooth_name
       route_direction
       entrance_or_exit
-      note
+      notes
     ].freeze
 
     def tollbooths

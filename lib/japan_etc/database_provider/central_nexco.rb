@@ -26,7 +26,13 @@ module JapanETC
           (?<tollbooth_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)
           #{WHITESPACE}+
         )?
-        (?<identifiers>\d{2}\s+\d{3}\b.*)
+        (?<identifiers>\d{2}\s+\d{3}\b.*?)
+        (?:
+          ※
+          (?<note>.+?)
+          #{WHITESPACE}*
+        )?
+        \z
       /x.freeze
 
       IDENTIFIER_PATTERN = /\b(\d{2})\s+(\d{3})\b/.freeze
@@ -52,13 +58,14 @@ module JapanETC
             road_number: identifier.first,
             tollbooth_number: identifier.last,
             road_name: current_road_name,
-            name: current_tollbooth_name
+            name: current_tollbooth_name,
+            note: match[:note]
           )
         end
       end
 
       def lines
-        pdf.pages.flat_map { |page| page.text.each_line.to_a }
+        pdf.pages.flat_map { |page| page.text.each_line.map(&:chomp).to_a }
       end
 
       def pdf

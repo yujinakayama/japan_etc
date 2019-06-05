@@ -12,5 +12,9 @@ module JapanETC
       @name = name
       @route_name = route_name
     end
+
+    def to_a
+      [name, route_name]
+    end
   end
 end

@@ -33,6 +33,20 @@ module JapanETC
       @route_direction = route_direction
     end
 
+    def ==(other)
+      identifier == other&.identifier
+    end
+
+    alias eql? ==
+
+    def hash
+      identifier.hash
+    end
+
+    def to_a
+      [identifier.to_a, road.to_a, name, entrance_or_exit, route_direction].flatten
+    end
+
     Identifier = Struct.new(:road_number, :tollbooth_number) do
       def initialize(*)
         super

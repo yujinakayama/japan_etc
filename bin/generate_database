@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'japan_etc/database'
+
+JapanETC::Database.new.save_as_csv

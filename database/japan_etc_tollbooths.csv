@@ -1,3 +1,4 @@
+road_number,tollbooth_number,road_name,route_name,tollbooth_name,entrance_or_exit,route_direction,note
 12,2,首都高速道路,1号羽田線,羽田上,exit,,
 12,3,首都高速道路,1号羽田線,羽田上,entrance,,
 12,4,首都高速道路,1号羽田線,羽田下,entrance,,

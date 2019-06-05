@@ -5,12 +5,24 @@ require 'csv'
 
 module JapanETC
   class Database
+    CSV_HEADER = %i[
+      road_number
+      tollbooth_number
+      road_name
+      route_name
+      tollbooth_name
+      entrance_or_exit
+      route_direction
+      note
+    ].freeze
+
     def tollbooths
       @tollbooths ||= providers.map(&:fetch_tollbooths).flatten.uniq
     end
 
     def save_as_csv(filename: 'database/japan_etc_tollbooths.csv')
       CSV.open(filename, 'w') do |csv|
+        csv << CSV_HEADER
         tollbooths.each { |tollbooth| csv << tollbooth.to_a }
       end
     end

@@ -6,8 +6,6 @@ module JapanETC
     OUTBOUND         = :outbound
     CLOCKWISE        = :clockwise
     COUNTERCLOCKWISE = :counterclockwise
-    NORTH            = :north
-    SOUTH            = :south
     EAST             = :east
     WEST             = :west
 
@@ -21,10 +19,6 @@ module JapanETC
         CLOCKWISE
       when '内回り', '内'
         COUNTERCLOCKWISE
-      when '北'
-        NORTH
-      when '南'
-        SOUTH
       when '東'
         EAST
       when '西'

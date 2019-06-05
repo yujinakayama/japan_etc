@@ -7,5 +7,6 @@ gemspec
 
 group :development do
   gem 'rake', '~> 10.0'
+  gem 'rspec'
   gem 'rubocop'
 end

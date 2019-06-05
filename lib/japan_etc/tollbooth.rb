@@ -8,7 +8,7 @@ require 'japan_etc/util'
 
 module JapanETC
   class Tollbooth
-    attr_reader :identifier, :road, :name, :entrance_or_exit, :route_direction
+    attr_reader :identifier, :road, :name, :entrance_or_exit, :route_direction, :note
 
     def self.create(
       road_number:,
@@ -32,6 +32,7 @@ module JapanETC
       @name = normalize(name)
       @entrance_or_exit = entrance_or_exit
       @route_direction = route_direction
+      @note = nil
     end
 
     def ==(other)
@@ -45,7 +46,7 @@ module JapanETC
     end
 
     def to_a
-      [identifier.to_a, road.to_a, name, entrance_or_exit, route_direction].flatten
+      [identifier.to_a, road.to_a, name, entrance_or_exit, route_direction, note].flatten
     end
 
     def normalize(string)

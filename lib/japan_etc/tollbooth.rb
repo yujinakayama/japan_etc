@@ -34,6 +34,7 @@ module JapanETC
       @route_direction = route_direction
 
       extract_note_from_name!
+      extract_route_direction_from_note!
     end
 
     def ==(other)
@@ -65,6 +66,13 @@ module JapanETC
           match[:note]
         end
       end
+    end
+
+    def extract_route_direction_from_note!
+      return if route_direction
+
+      @route_direction = RouteDirection.from(note)
+      @note = nil if route_direction
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do

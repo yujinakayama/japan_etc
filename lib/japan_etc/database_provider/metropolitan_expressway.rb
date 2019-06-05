@@ -11,8 +11,48 @@ module JapanETC
     class MetropolitanExpressway < Base
       URL = 'https://www.shutoko.jp/fee/tollbooth/~/media/pdf/customer/fee/tollbooth/code190201.csv/'
 
+      OPPOSITE_DIRECTIONS = {
+        '上' => '下',
+        '下' => '上',
+        '外' => '内',
+        '内' => '外',
+        '東' => '西',
+        '西' => '東'
+      }.freeze
+
+      DIRECTION_SUFFIX_PATTERN = /[#{OPPOSITE_DIRECTIONS.keys.join('')}]\z/.freeze
+
       def fetch_tollbooths
-        rows.map do |row|
+        original_tollbooths.map do |original_tollbooth|
+          tollbooth = original_tollbooth.dup
+          extract_route_direction_from_name!(tollbooth)
+          tollbooth
+        end
+      end
+
+      def extract_route_direction_from_name!(tollbooth)
+        match = tollbooth.name.match(DIRECTION_SUFFIX_PATTERN)
+
+        return unless match
+
+        direction = match.to_s
+
+        return if %w[東 西].include?(direction) && tollbooth.road.route_name != '湾岸線'
+
+        opposite_name = tollbooth.name.sub(DIRECTION_SUFFIX_PATTERN, OPPOSITE_DIRECTIONS[direction])
+
+        opposite_tollbooth_exists = original_tollbooths.find do |other_tollbooth|
+          other_tollbooth.road == tollbooth.road && other_tollbooth.name == opposite_name
+        end
+
+        return unless opposite_tollbooth_exists
+
+        tollbooth.route_direction = RouteDirection.from(direction)
+        tollbooth.name.sub!(DIRECTION_SUFFIX_PATTERN, '')
+      end
+
+      def original_tollbooths
+        @original_tollbooths ||= rows.map do |row|
           Tollbooth.create(
             road_number: row[0],
             tollbooth_number: row[1],

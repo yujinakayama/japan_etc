@@ -8,7 +8,7 @@ require 'japan_etc/util'
 
 module JapanETC
   class Tollbooth
-    attr_reader :identifier, :road, :name, :entrance_or_exit, :route_direction, :note
+    attr_accessor :identifier, :road, :name, :entrance_or_exit, :route_direction, :note
 
     def self.create(
       road_number:,
@@ -35,6 +35,11 @@ module JapanETC
 
       extract_note_from_name!
       extract_route_direction_from_note!
+    end
+
+    def initialize_copy(original)
+      @road = original.road.dup
+      @name = original.name.dup
     end
 
     def ==(other)

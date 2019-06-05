@@ -1,8 +1,6 @@
 # JapanETC
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/japan_etc`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Japanese ETC (Electronic Toll Collection System) database collected from some data sources.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The tollbooth database is exported to [database/japan\_etc\_tollbooths.csv](https://github.com/yujinakayama/japan_etc/blob/master/database/japan_etc_tollbooths.csv).
 
 ## Development
 

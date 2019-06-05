@@ -3,7 +3,7 @@
 require 'japan_etc/database_provider/metropolitan_expressway'
 
 module JapanETC
-  RSpec.describe DatabaseProvider::MetropolitanExpressway do
+  RSpec.describe DatabaseProvider::MetropolitanExpressway, vcr: { cassette_name: DatabaseProvider::MetropolitanExpressway } do
     subject(:database_provider) do
       described_class.new
     end

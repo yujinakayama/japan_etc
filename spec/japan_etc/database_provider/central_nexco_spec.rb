@@ -3,7 +3,7 @@
 require 'japan_etc/database_provider/central_nexco'
 
 module JapanETC
-  RSpec.describe DatabaseProvider::CentralNEXCO do
+  RSpec.describe DatabaseProvider::CentralNEXCO, vcr: { cassette_name: DatabaseProvider::CentralNEXCO } do
     subject(:database_provider) do
       described_class.new
     end

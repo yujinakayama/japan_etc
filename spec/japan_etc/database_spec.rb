@@ -3,7 +3,7 @@
 require 'japan_etc/database'
 
 module JapanETC
-  RSpec.describe Database do
+  RSpec.describe Database, vcr: { cassette_name: Database } do
     subject(:database) do
       described_class.new
     end

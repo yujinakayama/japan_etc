@@ -4,6 +4,7 @@ require 'japan_etc/entrance_or_exit'
 require 'japan_etc/error'
 require 'japan_etc/road'
 require 'japan_etc/route_direction'
+require 'japan_etc/util'
 
 module JapanETC
   class Tollbooth
@@ -28,13 +29,13 @@ module JapanETC
 
       @identifier = identifier
       @road = road
-      @name = name
+      @name = normalize(name)
       @entrance_or_exit = entrance_or_exit
       @route_direction = route_direction
     end
 
     def ==(other)
-      identifier == other&.identifier
+      other.is_a?(self.class) && identifier == other.identifier
     end
 
     alias eql? ==
@@ -45,6 +46,10 @@ module JapanETC
 
     def to_a
       [identifier.to_a, road.to_a, name, entrance_or_exit, route_direction].flatten
+    end
+
+    def normalize(string)
+      Util.convert_fullwidth_characters_to_halfwidth(string)
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do

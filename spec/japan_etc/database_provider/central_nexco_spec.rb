@@ -88,7 +88,7 @@ module JapanETC
             name: '近畿自動車道',
             route_name: nil
           ),
-          name: '門真ＪＣＴ'
+          name: '門真JCT'
         )
 
         expect(find_tollbooth(6, 306)).to have_attributes(
@@ -96,7 +96,7 @@ module JapanETC
             name: '近畿自動車道',
             route_name: nil
           ),
-          name: '門真ＪＣＴ'
+          name: '門真JCT'
         )
       end
 

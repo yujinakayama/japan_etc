@@ -22,7 +22,7 @@ module JapanETC
         expect(find_tollbooth(12, 583)).to have_attributes(
           road: an_object_having_attributes(name: '首都高速道路', route_name: '11号台場線'),
           name: '台場',
-          route_direction: nil,
+          direction: nil,
           entrance_or_exit: '出口'
         )
       end

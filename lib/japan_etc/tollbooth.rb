@@ -3,14 +3,14 @@
 require 'japan_etc/entrance_or_exit'
 require 'japan_etc/error'
 require 'japan_etc/road'
-require 'japan_etc/route_direction'
+require 'japan_etc/direction'
 require 'japan_etc/util'
 
 module JapanETC
   class Tollbooth
     include Util
 
-    attr_accessor :identifier, :road, :name, :entrance_or_exit, :route_direction, :notes
+    attr_accessor :identifier, :road, :name, :entrance_or_exit, :direction, :notes
 
     def self.create(
       road_number:,
@@ -18,30 +18,30 @@ module JapanETC
       road_name:,
       route_name: nil,
       name:,
-      route_direction: nil,
+      direction: nil,
       entrance_or_exit: nil,
       note: nil
     )
       identifier = Identifier.new(road_number, tollbooth_number)
       road = Road.new(road_name, route_name)
-      new(identifier, road, name, route_direction, entrance_or_exit, note)
+      new(identifier, road, name, direction, entrance_or_exit, note)
     end
 
-    def initialize(identifier, road, name, route_direction = nil, entrance_or_exit = nil, note = nil) # rubocop:disable Metrics/LineLength
+    def initialize(identifier, road, name, direction = nil, entrance_or_exit = nil, note = nil) # rubocop:disable Metrics/LineLength
       raise ValidationError if identifier.nil? || road.nil? || name.nil?
 
       @identifier = identifier
       @road = road
       @name = normalize(name)
-      @route_direction = route_direction
+      @direction = direction
       @entrance_or_exit = entrance_or_exit
       @notes = []
       notes << normalize(note) if note
 
       extract_note_from_name!
-      extract_route_direction_from_notes!
+      extract_direction_from_notes!
       extract_entrance_or_exit_from_notes!
-      extract_route_direction_from_name!
+      extract_direction_from_name!
       extract_entrance_or_exit_from_name!
     end
 
@@ -65,7 +65,7 @@ module JapanETC
         identifier.to_a,
         road.to_a,
         name,
-        route_direction,
+        direction,
         entrance_or_exit,
         notes.empty? ? nil : notes.join(' ')
       ].flatten
@@ -84,13 +84,13 @@ module JapanETC
       end
     end
 
-    def extract_route_direction_from_notes!
-      return if route_direction
+    def extract_direction_from_notes!
+      return if direction
 
       notes.reject! do |note|
-        next false if route_direction
+        next false if direction
 
-        @route_direction = RouteDirection.from(note)
+        @direction = Direction.from(note)
       end
     end
 
@@ -104,11 +104,11 @@ module JapanETC
       end
     end
 
-    def extract_route_direction_from_name!
-      return if route_direction
+    def extract_direction_from_name!
+      return if direction
 
       name.sub!(/(?:上り|下り)/) do |match|
-        @route_direction = match == '上り' ? RouteDirection::INBOUND : RouteDirection::OUTBOUND
+        @direction = match == '上り' ? Direction::INBOUND : Direction::OUTBOUND
         ''
       end
     end

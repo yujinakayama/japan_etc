@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module JapanETC
-  module RouteDirection
+  module Direction
     INBOUND          = '上り'
     OUTBOUND         = '下り'
     CLOCKWISE        = '外回り'

@@ -25,12 +25,12 @@ module JapanETC
       def fetch_tollbooths
         original_tollbooths.map do |original_tollbooth|
           tollbooth = original_tollbooth.dup
-          extract_route_direction_from_name!(tollbooth)
+          extract_direction_from_name!(tollbooth)
           tollbooth
         end
       end
 
-      def extract_route_direction_from_name!(tollbooth)
+      def extract_direction_from_name!(tollbooth)
         match = tollbooth.name.match(DIRECTION_SUFFIX_PATTERN)
 
         return unless match
@@ -47,7 +47,7 @@ module JapanETC
 
         return unless opposite_tollbooth_exists
 
-        tollbooth.route_direction = RouteDirection.from(direction)
+        tollbooth.direction = Direction.from(direction)
         tollbooth.name.sub!(DIRECTION_SUFFIX_PATTERN, '')
       end
 

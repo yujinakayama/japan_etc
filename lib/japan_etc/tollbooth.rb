@@ -16,22 +16,22 @@ module JapanETC
       road_name:,
       route_name: nil,
       name:,
-      entrance_or_exit: nil,
-      route_direction: nil
+      route_direction: nil,
+      entrance_or_exit: nil
     )
       identifier = Identifier.new(road_number, tollbooth_number)
       road = Road.new(road_name, route_name)
-      new(identifier, road, name, entrance_or_exit, route_direction)
+      new(identifier, road, name, route_direction, entrance_or_exit)
     end
 
-    def initialize(identifier, road, name, entrance_or_exit = nil, route_direction = nil)
+    def initialize(identifier, road, name, route_direction = nil, entrance_or_exit = nil)
       raise ValidationError if identifier.nil? || road.nil? || name.nil?
 
       @identifier = identifier
       @road = road
       @name = normalize(name)
-      @entrance_or_exit = entrance_or_exit
       @route_direction = route_direction
+      @entrance_or_exit = entrance_or_exit
 
       extract_note_from_name!
       extract_route_direction_from_note!
@@ -53,7 +53,7 @@ module JapanETC
     end
 
     def to_a
-      [identifier.to_a, road.to_a, name, entrance_or_exit, route_direction, note].flatten
+      [identifier.to_a, road.to_a, name, route_direction, entrance_or_exit, note].flatten
     end
 
     def normalize(string)

@@ -11,8 +11,8 @@ module JapanETC
       road_name
       route_name
       tollbooth_name
-      entrance_or_exit
       route_direction
+      entrance_or_exit
       note
     ].freeze
 

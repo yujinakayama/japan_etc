@@ -1,4 +1,6 @@
-require "japan_etc/version"
+# frozen_string_literal: true
+
+require 'japan_etc/version'
 
 module JapanETC
   class Error < StandardError; end

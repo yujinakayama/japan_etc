@@ -7,9 +7,9 @@ module JapanETC
 
     def self.from(text)
       case text
-      when /入口/, '入'
+      when /入口/, /（入）/, '入'
         ENTRANCE
-      when /出口/, '出'
+      when /出口/, /（出）/, '出'
         EXIT
       end
     end

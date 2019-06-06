@@ -22,7 +22,7 @@ module JapanETC
 
         return nil if !road_number.is_a?(Numeric) || !tollbooth_number.is_a?(Numeric)
 
-        Tollbooth.create(
+        tollbooth = Tollbooth.create(
           road_number: road_number,
           tollbooth_number: tollbooth_number,
           road_name: '阪神高速道路',
@@ -30,6 +30,19 @@ module JapanETC
           name: tollbooth_name,
           note: note
         )
+
+        remove_redundant_name_suffix!(tollbooth)
+
+        tollbooth
+      end
+
+      def remove_redundant_name_suffix!(tollbooth)
+        return unless tollbooth.entrance_or_exit
+
+        tollbooth.name.sub!(/[入出]\z/) do |match|
+          found_entrance_or_exit = EntranceOrExit.from(match)
+          found_entrance_or_exit == tollbooth.entrance_or_exit ? '' : match
+        end
       end
 
       def rows

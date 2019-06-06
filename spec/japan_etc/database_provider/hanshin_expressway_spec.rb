@@ -28,9 +28,18 @@ module JapanETC
 
         expect(find_tollbooth(13, 687)).to have_attributes(
           road: an_object_having_attributes(name: '阪神高速道路', route_name: '8号京都線'),
-          name: '鴨川東出',
+          name: '鴨川東',
           direction: nil,
           entrance_or_exit: '出口'
+        )
+      end
+
+      it 'does not confuse place name ending with "出" as exit' do
+        expect(find_tollbooth(13, 255)).to have_attributes(
+          road: an_object_having_attributes(name: '阪神高速道路', route_name: '15号堺線'),
+          name: '玉出',
+          direction: nil,
+          entrance_or_exit: '入口'
         )
       end
     end

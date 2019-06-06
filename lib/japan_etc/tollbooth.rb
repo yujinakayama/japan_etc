@@ -119,20 +119,29 @@ module JapanETC
     end
 
     def extract_direction_from_name!
-      return if direction
-
       name.sub!(/(?:上り|下り)/) do |match|
-        @direction = match == '上り' ? Direction::INBOUND : Direction::OUTBOUND
-        ''
+        found_direction = Direction.from(match)
+
+        if direction
+          found_direction == direction ? '' : match
+        else
+          @direction = found_direction
+          ''
+        end
       end
     end
 
     def extract_entrance_or_exit_from_name!
-      return if entrance_or_exit
+      name.sub!(/(?:入口|出口|料金所)/) do |match|
+        found_entrance_or_exit = EntranceOrExit.from(match)
+        found_entrance_or_exit ||= EntranceOrExit::EXIT
 
-      name.sub!(/(?:入口|料金所)/) do |match|
-        @entrance_or_exit = match == '入口' ? EntranceOrExit::ENTRANCE : EntranceOrExit::EXIT
-        ''
+        if entrance_or_exit
+          found_entrance_or_exit == entrance_or_exit ? '' : match
+        else
+          @entrance_or_exit = found_entrance_or_exit
+          ''
+        end
       end
     end
 

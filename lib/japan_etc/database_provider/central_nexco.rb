@@ -29,7 +29,7 @@ module JapanETC
           (?<tollbooth_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)
           #{WHITESPACE}+
         )?
-        (?<identifiers>\d{2}\s+\d{3}\b.*?)
+        (?<identifiers>\d{2}#{WHITESPACE}+\d{3}\b.*?)
         (?:
           ※
           (?<note>.+?)
@@ -38,7 +38,7 @@ module JapanETC
         \z
       /x.freeze
 
-      IDENTIFIER_PATTERN = /\b(\d{2})\s+(\d{3})\b/.freeze
+      IDENTIFIER_PATTERN = /\b(\d{2})#{WHITESPACE}+(\d{3})\b/.freeze
 
       attr_reader :current_road_name, :current_route_name, :current_tollbooth_name
 

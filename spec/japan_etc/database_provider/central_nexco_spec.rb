@@ -118,6 +118,14 @@ module JapanETC
           ),
           name: '海田'
         )
+
+        expect(find_tollbooth(83, 303)).to have_attributes(
+          road: an_object_having_attributes(
+            name: '小田原厚木道路',
+            route_name: nil
+          ),
+          name: '平塚本線'
+        )
       end
     end
   end

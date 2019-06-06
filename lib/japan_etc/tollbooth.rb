@@ -2,7 +2,6 @@
 
 require 'japan_etc/entrance_or_exit'
 require 'japan_etc/error'
-require 'japan_etc/road'
 require 'japan_etc/direction'
 require 'japan_etc/util'
 
@@ -10,11 +9,19 @@ module JapanETC
   class Tollbooth
     include Util
 
-    attr_accessor :identifier, :road, :name, :entrance_or_exit, :direction, :notes
+    attr_accessor :identifier, :road_name, :route_name, :name, :entrance_or_exit, :direction, :notes
 
-    def self.create(
-      road_number:,
-      tollbooth_number:,
+    def self.create(**keywords)
+      identifier = Identifier.new(
+        keywords.delete(:road_number) { raise ValidationError },
+        keywords.delete(:tollbooth_number) { raise ValidationError }
+      )
+
+      new(identifier: identifier, **keywords)
+    end
+
+    def initialize(
+      identifier:,
       road_name:,
       route_name: nil,
       name:,
@@ -22,16 +29,11 @@ module JapanETC
       entrance_or_exit: nil,
       note: nil
     )
-      identifier = Identifier.new(road_number, tollbooth_number)
-      road = Road.new(road_name, route_name)
-      new(identifier, road, name, direction, entrance_or_exit, note)
-    end
-
-    def initialize(identifier, road, name, direction = nil, entrance_or_exit = nil, note = nil) # rubocop:disable Metrics/LineLength
-      raise ValidationError if identifier.nil? || road.nil? || name.nil?
+      raise ValidationError if identifier.nil? || road_name.nil? || name.nil?
 
       @identifier = identifier
-      @road = road
+      @road_name = normalize(road_name)
+      @route_name = normalize(route_name)
       @name = normalize(name)
       @direction = direction
       @entrance_or_exit = entrance_or_exit
@@ -46,7 +48,8 @@ module JapanETC
     end
 
     def initialize_copy(original)
-      @road = original.road.dup
+      @road_name = original.road_name.dup
+      @route_name = original.route_name.dup
       @name = original.name.dup
     end
 
@@ -63,7 +66,8 @@ module JapanETC
     def to_a
       [
         identifier.to_a,
-        road.to_a,
+        road_name,
+        route_name,
         name,
         direction,
         entrance_or_exit,

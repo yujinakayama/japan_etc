@@ -20,82 +20,58 @@ module JapanETC
 
       it 'handles road names properly' do
         expect(find_tollbooth(5, 20)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '道央自動車道',
-            route_name: nil
-          ),
+          road_name: '道央自動車道',
+          route_name: nil,
           name: '大沼公園本線'
         )
 
         expect(find_tollbooth(5, 985)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '道央自動車道',
-            route_name: nil
-          ),
+          road_name: '道央自動車道',
+          route_name: nil,
           name: '深川西本線'
         )
 
         expect(find_tollbooth(5, 151)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '道東自動車道',
-            route_name: nil
-          ),
+          road_name: '道東自動車道',
+          route_name: nil,
           name: '千歳東'
         )
       end
 
       it 'handles tollboothes having multiple identifiers properly' do
         expect(find_tollbooth(5, 102)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '道央自動車道',
-            route_name: nil
-          ),
+          road_name: '道央自動車道',
           name: '江別西'
         )
 
         expect(find_tollbooth(5, 902)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '道央自動車道',
-            route_name: nil
-          ),
+          road_name: '道央自動車道',
           name: '江別西'
         )
       end
 
       it 'handles tollboothes having some comment properly' do
         expect(find_tollbooth(5, 360)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '道東自動車道',
-            route_name: nil
-          ),
+          road_name: '道東自動車道',
           name: '池田'
         )
       end
 
       it 'ignores obsolete road names' do
         expect(find_tollbooth(7, 38)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '三陸自動車道',
-            route_name: nil
-          ),
+          road_name: '三陸自動車道',
           name: '松島海岸'
         )
       end
 
       it 'handles tollboothes having multiple identifiers expanding multilines properly' do
         expect(find_tollbooth(6, 517)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '近畿自動車道',
-            route_name: nil
-          ),
+          road_name: '近畿自動車道',
           name: '門真JCT'
         )
 
         expect(find_tollbooth(6, 306)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '近畿自動車道',
-            route_name: nil
-          ),
+          road_name: '近畿自動車道',
           name: '門真JCT'
         )
       end
@@ -104,7 +80,7 @@ module JapanETC
         target_identifier = Tollbooth::Identifier.new(6, 325)
 
         tollbooth = tollbooths.find do |tollbooth|
-          tollbooth.identifier == target_identifier && tollbooth.road.name == '堺泉北有料道路'
+          tollbooth.identifier == target_identifier && tollbooth.road_name == '堺泉北有料道路'
         end
 
         expect(tollbooth.name).to eq('平井本線')
@@ -112,18 +88,12 @@ module JapanETC
 
       it 'handles full-width whitespace properly' do
         expect(find_tollbooth(9, 263)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '臨港道路海田大橋',
-            route_name: nil
-          ),
+          road_name: '臨港道路海田大橋',
           name: '海田'
         )
 
         expect(find_tollbooth(83, 303)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '小田原厚木道路',
-            route_name: nil
-          ),
+          road_name: '小田原厚木道路',
           name: '平塚本線'
         )
       end

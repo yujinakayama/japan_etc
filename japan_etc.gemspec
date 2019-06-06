@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'faraday', '~> 0.15'
   spec.add_development_dependency 'pdf-reader', '~> 2.2'
+  spec.add_development_dependency 'spreadsheet', '~> 1.2'
 end

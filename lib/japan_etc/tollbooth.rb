@@ -72,12 +72,16 @@ module JapanETC
     end
 
     def extract_note_from_name!
-      @name = name.sub(/(?<head>.+?)?（(?<note>.+?)）(?<tail>.+)?/) do
+      @name = name.sub(/(?<head>.+?)?\s*[（\(](?<note>.+?)[）\)]\s*(?<tail>.+)?/) do
         match = Regexp.last_match
 
-        if match[:head] || match[:tail]
-          notes.prepend(match[:note])
-          "#{match[:head]}#{match[:tail]}"
+        if match[:head]
+          prepend_to_notes(match[:tail]) if match[:tail]
+          prepend_to_notes(match[:note])
+          match[:head]
+        elsif match[:tail]
+          prepend_to_notes(match[:note])
+          match[:tail]
         else
           match[:note]
         end
@@ -120,6 +124,11 @@ module JapanETC
         @entrance_or_exit = match == '入口' ? EntranceOrExit::ENTRANCE : EntranceOrExit::EXIT
         ''
       end
+    end
+
+    def prepend_to_notes(note)
+      note = normalize(note)
+      notes.prepend(note)
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do

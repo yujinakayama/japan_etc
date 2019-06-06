@@ -41,5 +41,23 @@ module JapanETC
         )
       end
     end
+
+    context 'with name suffixed with "第X" with note' do
+      subject(:tollbooth) do
+        Tollbooth.create(
+          road_number: 31,
+          tollbooth_number: 57,
+          road_name: '東京湾アクアライン',
+          name: '木更津金田第一(木更津本線、川崎→木更津)'
+        )
+      end
+
+      it 'extract to suffix from the name' do
+        expect(tollbooth).to have_attributes(
+          name: '木更津金田',
+          notes: ['第一', '木更津本線、川崎→木更津']
+        )
+      end
+    end
   end
 end

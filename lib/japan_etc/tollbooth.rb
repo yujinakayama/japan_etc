@@ -40,7 +40,7 @@ module JapanETC
       @notes = []
       notes << normalize(note) if note
 
-      extract_note_from_name!
+      extract_notes_from_name!
       extract_direction_from_notes!
       extract_entrance_or_exit_from_notes!
       extract_direction_from_name!
@@ -75,8 +75,8 @@ module JapanETC
       ].flatten
     end
 
-    def extract_note_from_name!
-      @name = name.sub(/(?<head>.+?)?\s*[（\(](?<note>.+?)[）\)]\s*(?<tail>.+)?/) do
+    def extract_notes_from_name!
+      name.sub!(/(?<head>.+?)?\s*[（\(](?<note>.+?)[）\)]\s*(?<tail>.+)?/) do
         match = Regexp.last_match
 
         if match[:head]
@@ -89,6 +89,11 @@ module JapanETC
         else
           match[:note]
         end
+      end
+
+      name.sub!(/第[一二三]\z/) do |match|
+        prepend_to_notes(match)
+        ''
       end
     end
 

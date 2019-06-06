@@ -119,7 +119,7 @@ module JapanETC
     end
 
     def extract_direction_from_name!
-      name.sub!(/(?:上り|下り)/) do |match|
+      name.sub!(/(?:上り|下り|[東西南北]行き?)/) do |match|
         found_direction = Direction.from(match)
 
         if direction

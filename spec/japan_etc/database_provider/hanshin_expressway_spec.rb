@@ -42,6 +42,15 @@ module JapanETC
           entrance_or_exit: '入口'
         )
       end
+
+      it 'handles tollbooth names suffixed with both direction and entrance/exit like "岸和田北南行出"' do
+        expect(find_tollbooth(13, 639)).to have_attributes(
+          road: an_object_having_attributes(name: '阪神高速道路', route_name: '4号湾岸線'),
+          name: '岸和田北',
+          direction: '南行き',
+          entrance_or_exit: '出口'
+        )
+      end
     end
   end
 end

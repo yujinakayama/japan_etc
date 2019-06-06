@@ -89,22 +89,32 @@ module JapanETC
     end
 
     def extract_direction_from_notes!
-      return if direction
-
       notes.reject! do |note|
-        next false if direction
+        found_direction = Direction.from(note)
+        next false unless found_direction
 
-        @direction = Direction.from(note)
+        if direction
+          raise ValidationError unless found_direction == direction
+        else
+          @direction = found_direction
+        end
+
+        true
       end
     end
 
     def extract_entrance_or_exit_from_notes!
-      return if entrance_or_exit
-
       notes.reject! do |note|
-        next false if entrance_or_exit
+        found_entrance_or_exit = EntranceOrExit.from(note)
+        next false unless found_entrance_or_exit
 
-        @entrance_or_exit = EntranceOrExit.from(note)
+        if entrance_or_exit
+          raise ValidationError unless found_entrance_or_exit == entrance_or_exit
+        else
+          @entrance_or_exit = found_entrance_or_exit
+        end
+
+        true
       end
     end
 

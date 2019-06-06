@@ -30,7 +30,7 @@ module JapanETC
           road: an_object_having_attributes(name: '阪神高速道路', route_name: '8号京都線'),
           name: '鴨川東出',
           direction: nil,
-          entrance_or_exit: nil
+          entrance_or_exit: '出口'
         )
       end
     end

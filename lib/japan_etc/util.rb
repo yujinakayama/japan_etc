@@ -18,8 +18,8 @@ module JapanETC
 
     def convert_to_integer(object)
       case object
-      when Integer
-        object
+      when Numeric
+        Integer(object)
       when String
         Integer(object.sub(/\A0+/, ''))
       else

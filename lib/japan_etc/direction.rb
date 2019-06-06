@@ -6,6 +6,8 @@ module JapanETC
     OUTBOUND         = '下り'
     CLOCKWISE        = '外回り'
     COUNTERCLOCKWISE = '内回り'
+    NORTH            = '北行き'
+    SOUTH            = '南行き'
     EAST             = '東行き'
     WEST             = '西行き'
 
@@ -19,9 +21,13 @@ module JapanETC
         CLOCKWISE
       when '内回り', '内'
         COUNTERCLOCKWISE
-      when '東'
+      when /北行/, '北'
+        NORTH
+      when /南行/, '南'
+        SOUTH
+      when /東行/, '東'
         EAST
-      when '西'
+      when /西行/, '西'
         WEST
       end
     end

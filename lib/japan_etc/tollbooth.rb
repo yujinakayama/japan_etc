@@ -89,40 +89,59 @@ module JapanETC
     end
 
     def extract_direction_from_notes!
-      return if direction
-
       notes.reject! do |note|
-        next false if direction
+        found_direction = Direction.from(note)
+        next false unless found_direction
 
-        @direction = Direction.from(note)
+        if direction
+          raise ValidationError unless found_direction == direction
+        else
+          @direction = found_direction
+        end
+
+        true
       end
     end
 
     def extract_entrance_or_exit_from_notes!
-      return if entrance_or_exit
-
       notes.reject! do |note|
-        next false if entrance_or_exit
+        found_entrance_or_exit = EntranceOrExit.from(note)
+        next false unless found_entrance_or_exit
 
-        @entrance_or_exit = EntranceOrExit.from(note)
+        if entrance_or_exit
+          raise ValidationError unless found_entrance_or_exit == entrance_or_exit
+        else
+          @entrance_or_exit = found_entrance_or_exit
+        end
+
+        true
       end
     end
 
     def extract_direction_from_name!
-      return if direction
+      name.sub!(/(?:上り|下り|[東西南北]行き?)/) do |match|
+        found_direction = Direction.from(match)
 
-      name.sub!(/(?:上り|下り)/) do |match|
-        @direction = match == '上り' ? Direction::INBOUND : Direction::OUTBOUND
-        ''
+        if direction
+          found_direction == direction ? '' : match
+        else
+          @direction = found_direction
+          ''
+        end
       end
     end
 
     def extract_entrance_or_exit_from_name!
-      return if entrance_or_exit
+      name.sub!(/(?:入口|出口|料金所)/) do |match|
+        found_entrance_or_exit = EntranceOrExit.from(match)
+        found_entrance_or_exit ||= EntranceOrExit::EXIT
 
-      name.sub!(/(?:入口|料金所)/) do |match|
-        @entrance_or_exit = match == '入口' ? EntranceOrExit::ENTRANCE : EntranceOrExit::EXIT
-        ''
+        if entrance_or_exit
+          found_entrance_or_exit == entrance_or_exit ? '' : match
+        else
+          @entrance_or_exit = found_entrance_or_exit
+          ''
+        end
       end
     end
 

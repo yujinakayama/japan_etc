@@ -74,7 +74,8 @@ module JapanETC
       def extract_route_name_from_road_name(road_name)
         road_name = normalize(road_name)
         match = road_name.match(/\A(?<road_name>.+?)(?<route_name>\d+号.+)?\z/)
-        [match[:road_name], match[:route_name]]
+        road_name = match[:road_name].sub(/高速\z/, '高速道路')
+        [road_name, match[:route_name]]
       end
 
       def lines

@@ -53,6 +53,7 @@ module JapanETC
         if match[:road_name]
           @current_road_name, @current_route_name =
             extract_route_name_from_road_name(match[:road_name])
+          @current_road_name = canonicalize(@current_road_name)
         end
 
         @current_tollbooth_name = match[:tollbooth_name] if match[:tollbooth_name]
@@ -76,6 +77,12 @@ module JapanETC
         match = road_name.match(/\A(?<road_name>.+?)(?<route_name>\d+号.+)?\z/)
         road_name = match[:road_name].sub(/高速\z/, '高速道路')
         [road_name, match[:route_name]]
+      end
+
+      def canonicalize(road_name)
+        road_name = '首都圏中央連絡自動車道' if road_name == '首都圏中央連絡道'
+        road_name = road_name.sub(/高速\z/, '高速道路')
+        road_name
       end
 
       def lines

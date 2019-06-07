@@ -37,13 +37,12 @@ module JapanETC
 
         direction = match.to_s
 
-        return if %w[東 西].include?(direction) && tollbooth.route_name != '湾岸線'
+        return if %w[東 西].include?(direction) && tollbooth.road.route_name != '湾岸線'
 
         opposite_name = tollbooth.name.sub(DIRECTION_SUFFIX_PATTERN, OPPOSITE_DIRECTIONS[direction])
 
         opposite_tollbooth_exists = original_tollbooths.find do |other_tollbooth|
-          other_tollbooth.route_name == tollbooth.route_name &&
-            other_tollbooth.name == opposite_name
+          other_tollbooth.road == tollbooth.road && other_tollbooth.name == opposite_name
         end
 
         return unless opposite_tollbooth_exists

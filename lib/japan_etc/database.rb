@@ -16,6 +16,10 @@ module JapanETC
       notes
     ].freeze
 
+    def roads
+      tollbooths.map(&:road).uniq
+    end
+
     def tollbooths
       @tollbooths ||= providers.map(&:fetch_tollbooths).flatten.uniq
     end

@@ -62,7 +62,7 @@ module JapanETC
 
     def to_a
       [
-        identifier.to_a,
+        identifier.to_s,
         road.to_a,
         name,
         direction,
@@ -161,11 +161,17 @@ module JapanETC
       def initialize(road_number, tollbooth_number)
         road_number = convert_to_integer(road_number)
         raise ValidationError, '#road_number cannot be nil' if road_number.nil?
+        raise ValidationError, '#road_number must be lower than 100' if road_number >= 100
 
         tollbooth_number = convert_to_integer(tollbooth_number)
         raise ValidationError, '#tollbooth_number cannot be nil' if tollbooth_number.nil?
+        raise ValidationError, '#road_number must be lower than 1000' if tollbooth_number >= 1000
 
         super(road_number, tollbooth_number)
+      end
+
+      def to_s
+        format('%02d-%03d', road_number, tollbooth_number)
       end
     end
   end

@@ -6,8 +6,7 @@ require 'csv'
 module JapanETC
   class Database
     CSV_HEADER = %i[
-      road_number
-      tollbooth_number
+      tollbooth_id
       road_name
       route_name
       tollbooth_name

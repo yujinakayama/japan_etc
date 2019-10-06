@@ -12,7 +12,7 @@ module JapanETC
     class CentralNEXCO < Base
       include Util
 
-      URL = 'https://highwaypost.c-nexco.co.jp/faq/etc/use/documents/190423-2etcriyoukanouic.pdf'
+      URL = 'https://highwaypost.c-nexco.co.jp/faq/etc/use/documents/etcriyoukanouic.pdf'
 
       WHITESPACE = /[\s　]/.freeze
 

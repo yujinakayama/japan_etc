@@ -91,6 +91,11 @@ module JapanETC
         prepend_to_notes(match)
         ''
       end
+
+      name.sub!(/合併\z/) do |match|
+        prepend_to_notes(match) unless notes.any? { |note| note.include?('合併') }
+        ''
+      end
     end
 
     def extract_direction_from_notes!

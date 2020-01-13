@@ -12,14 +12,14 @@ module JapanETC
       include Util
 
       # NEXCO East
-      URL = 'https://www.driveplaza.com/traffic/tolls_etc/etc_area/pdf/all01.pdf'
+      # URL = 'https://www.driveplaza.com/traffic/tolls_etc/etc_area/pdf/all01.pdf'
 
       # NEXCO Central
       # NOTE: This PDF has issues with text encoding
       # URL = 'https://highwaypost.c-nexco.co.jp/faq/etc/use/documents/etcriyoukanouic.pdf'
 
       # NEXCO West
-      # URL = 'https://www.w-nexco.co.jp/etc/maintenance/pdfs/list01.pdf'
+      URL = 'https://www.w-nexco.co.jp/etc/maintenance/pdfs/list01.pdf'
 
       WHITESPACE = /[\s　]/.freeze
 

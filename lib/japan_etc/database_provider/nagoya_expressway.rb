@@ -9,7 +9,7 @@ module JapanETC
   module DatabaseProvider
     # http://www.nagoya-expressway.or.jp/etc/etc-lane.html
     class NagoyaExpressway < Base
-      URL = 'http://www.nagoya-expressway.or.jp/etc/etc-lane.html'
+      URL = 'https://www.nagoya-expressway.or.jp/etc/etc-lane.html'
 
       def fetch_tollbooths
         rows.map do |row|

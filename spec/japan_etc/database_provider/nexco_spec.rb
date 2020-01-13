@@ -100,25 +100,7 @@ module JapanETC
         )
       end
 
-      it 'handles tollboothes having multiple identifiers expanding multilines and obsolete road names properly' do
-        target_identifier = Tollbooth::Identifier.new(6, 325)
-
-        tollbooth = tollbooths.find do |tollbooth|
-          tollbooth.identifier == target_identifier && tollbooth.road.name == '堺泉北有料道路'
-        end
-
-        expect(tollbooth.name).to eq('平井本線')
-      end
-
       it 'handles full-width whitespace properly' do
-        expect(find_tollbooth(9, 263)).to have_attributes(
-          road: an_object_having_attributes(
-            name: '臨港道路海田大橋',
-            route_name: nil
-          ),
-          name: '海田'
-        )
-
         expect(find_tollbooth(83, 303)).to have_attributes(
           road: an_object_having_attributes(
             name: '小田原厚木道路',

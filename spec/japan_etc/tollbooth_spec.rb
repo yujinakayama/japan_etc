@@ -7,17 +7,17 @@ module JapanETC
     context 'with name including pure note' do
       subject(:tollbooth) do
         Tollbooth.create(
-          road_number: 10,
-          tollbooth_number: 50,
-          road_name: '東京外環自動車道',
-          name: '外環三郷東（2018/6/2より「三郷中央」へ名称変更）'
+          road_number: 1,
+          tollbooth_number: 252,
+          road_name: '伊勢湾岸自動車道',
+          name: '飛島(名古屋南方面)'
         )
       end
 
       it 'extract the note from the name' do
         expect(tollbooth).to have_attributes(
-          name: '外環三郷東',
-          notes: ['2018/6/2より「三郷中央」へ名称変更']
+          name: '飛島',
+          notes: ['名古屋南方面']
         )
       end
     end

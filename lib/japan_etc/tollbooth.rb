@@ -38,11 +38,7 @@ module JapanETC
       @notes = []
       notes << normalize(note) if note
 
-      extract_notes_from_name!
-      extract_direction_from_notes!
-      extract_entrance_or_exit_from_notes!
-      extract_direction_from_name!
-      extract_entrance_or_exit_from_name!
+      normalize!
     end
 
     def initialize_copy(original)
@@ -69,6 +65,16 @@ module JapanETC
         entrance_or_exit,
         notes.empty? ? nil : notes.join(' ')
       ].flatten
+    end
+
+    def normalize!
+      extract_notes_from_name!
+      extract_direction_from_notes!
+      extract_entrance_or_exit_from_notes!
+      extract_direction_from_name!
+      extract_entrance_or_exit_from_name!
+      name_was_changed = extract_name_from_notes!
+      normalize! if name_was_changed
     end
 
     def extract_notes_from_name!
@@ -153,6 +159,19 @@ module JapanETC
           ''
         end
       end
+    end
+
+    def extract_name_from_notes!
+      name_was_changed = notes.reject! do |note|
+        match = note.match(/「(?<new_name>.+?)」へ名称変更/)
+        next false unless match
+
+        @name = normalize(match[:new_name])
+
+        true
+      end
+
+      name_was_changed
     end
 
     def prepend_to_notes(note)

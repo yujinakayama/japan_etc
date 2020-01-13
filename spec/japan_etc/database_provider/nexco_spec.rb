@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'japan_etc/database_provider/central_nexco'
+require 'japan_etc/database_provider/nexco'
 
 module JapanETC
-  RSpec.describe DatabaseProvider::CentralNEXCO, vcr: { cassette_name: DatabaseProvider::CentralNEXCO } do
+  RSpec.describe DatabaseProvider::NEXCO, vcr: { cassette_name: DatabaseProvider::NEXCO } do
     subject(:database_provider) do
       described_class.new
     end

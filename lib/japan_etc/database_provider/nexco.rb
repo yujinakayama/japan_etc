@@ -8,8 +8,7 @@ require 'pdf-reader'
 
 module JapanETC
   module DatabaseProvider
-    # https://highwaypost.c-nexco.co.jp/faq/etc/use/50.html
-    class CentralNEXCO < Base
+    class NEXCO < Base
       include Util
 
       URL = 'https://highwaypost.c-nexco.co.jp/faq/etc/use/documents/etcriyoukanouic.pdf'

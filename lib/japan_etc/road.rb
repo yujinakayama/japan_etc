@@ -5,6 +5,7 @@ require 'japan_etc/util'
 
 module JapanETC
   Road = Struct.new(:name, :route_name) do
+    include Comparable
     include Util
 
     IRREGULAR_ABBREVIATIONS = {
@@ -48,6 +49,15 @@ module JapanETC
         .sub('有料', '')
 
       abbreviation
+    end
+
+    def <=>(other)
+      [:name, :route_name].each do |attribute|
+        result = send(attribute) <=> other.send(attribute)
+        return result unless result.zero?
+      end
+
+      0
     end
   end
 end

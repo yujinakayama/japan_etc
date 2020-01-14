@@ -180,6 +180,7 @@ module JapanETC
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do
+      include Comparable
       include Util
 
       def initialize(road_number, tollbooth_number)
@@ -195,7 +196,11 @@ module JapanETC
       end
 
       def to_s
-        format('%02d-%03d', road_number, tollbooth_number)
+        @string ||= format('%02d-%03d', road_number, tollbooth_number)
+      end
+
+      def <=>(other)
+        to_s <=> other.to_s
       end
     end
   end

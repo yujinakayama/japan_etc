@@ -8,6 +8,7 @@ require 'japan_etc/util'
 
 module JapanETC
   class Tollbooth
+    include Comparable
     include Util
 
     attr_accessor :identifier, :road, :name, :entrance_or_exit, :direction, :notes
@@ -56,6 +57,21 @@ module JapanETC
       identifier.hash
     end
 
+    def <=>(other)
+      result = identifier <=> other.identifier
+      return result unless result.zero?
+
+      return -1 if !obsolete? && other.obsolete?
+      return 1 if obsolete? && !other.obsolete?
+
+      [:road, :name].each do |attribute|
+        result = send(attribute) <=> other.send(attribute)
+        return result unless result.zero?
+      end
+
+      0
+    end
+
     def to_a
       [
         identifier.to_s,
@@ -66,6 +82,12 @@ module JapanETC
         notes.empty? ? nil : notes.join(' ')
       ].flatten
     end
+
+    def obsolete?
+      notes.any? { |note| note.include?('迄') }
+    end
+
+    private
 
     def normalize!
       extract_notes_from_name!
@@ -180,6 +202,7 @@ module JapanETC
     end
 
     Identifier = Struct.new(:road_number, :tollbooth_number) do
+      include Comparable
       include Util
 
       def initialize(road_number, tollbooth_number)
@@ -195,7 +218,11 @@ module JapanETC
       end
 
       def to_s
-        format('%02d-%03d', road_number, tollbooth_number)
+        @string ||= format('%02d-%03d', road_number, tollbooth_number)
+      end
+
+      def <=>(other)
+        to_s <=> other.to_s
       end
     end
   end

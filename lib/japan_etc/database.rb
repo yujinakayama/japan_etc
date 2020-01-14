@@ -20,7 +20,7 @@ module JapanETC
     end
 
     def tollbooths
-      @tollbooths ||= providers.map(&:fetch_tollbooths).flatten.sort
+      @tollbooths ||= providers.map(&:fetch_tollbooths).flatten.sort.uniq
     end
 
     def save_as_csv(filename: 'database/japan_etc_tollbooths.csv')

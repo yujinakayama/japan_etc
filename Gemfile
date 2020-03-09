@@ -7,7 +7,7 @@ gemspec
 
 group :development do
   gem 'pry-byebug', '~> 3.7'
-  gem 'rake', '~> 10.0'
+  gem 'rake', '~> 13.0'
   gem 'rspec', '~> 3.8'
   gem 'rubocop', '~> 0.71'
   gem 'vcr', '~> 5.0'

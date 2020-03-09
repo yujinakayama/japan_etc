@@ -28,7 +28,7 @@ module JapanETC
       new(identifier, road, name, direction, entrance_or_exit, note)
     end
 
-    def initialize(identifier, road, name, direction = nil, entrance_or_exit = nil, note = nil) # rubocop:disable Metrics/LineLength
+    def initialize(identifier, road, name, direction = nil, entrance_or_exit = nil, note = nil)
       raise ValidationError if identifier.nil? || road.nil? || name.nil?
 
       @identifier = identifier

@@ -9,7 +9,9 @@ module JapanETC
   module DatabaseProvider
     # http://www.nagoya-expressway.or.jp/etc/etc-lane.html
     class NagoyaExpressway < Base
-      URL = 'https://www.nagoya-expressway.or.jp/etc/etc-lane.html'
+      def source_url
+        'https://www.nagoya-expressway.or.jp/etc/etc-lane.html'
+      end
 
       def fetch_tollbooths
         rows.map do |row|
@@ -25,7 +27,8 @@ module JapanETC
             tollbooth_number: tollbooth_number,
             road_name: '名古屋高速道路',
             route_name: row[0],
-            name: row[2]
+            name: row[2],
+            source: source_id
           )
         end.compact
       end
@@ -57,7 +60,7 @@ module JapanETC
       end
 
       def doc
-        response = Faraday.get(URL)
+        response = Faraday.get(source_url)
         Nokogiri(response.body)
       end
 

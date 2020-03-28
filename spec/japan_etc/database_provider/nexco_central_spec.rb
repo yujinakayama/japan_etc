@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'japan_etc/database_provider/nexco'
+require 'japan_etc/database_provider/nexco_central'
 
 module JapanETC
-  RSpec.describe DatabaseProvider::NEXCO, vcr: { cassette_name: DatabaseProvider::NEXCO } do
+  RSpec.describe DatabaseProvider::NEXCOCentral, vcr: { cassette_name: DatabaseProvider::NEXCOCentral } do
     subject(:database_provider) do
       described_class.new
     end
@@ -107,6 +107,16 @@ module JapanETC
             route_name: nil
           ),
           name: '平塚本線'
+        )
+      end
+
+      pending 'handles strange unextractable tollbooth numbers' do
+        expect(find_tollbooth(1, 131)).to have_attributes(
+          road: an_object_having_attributes(
+            name: '名古屋第二環状自動車道',
+            route_name: nil
+          ),
+          name: '名二環名古屋'
         )
       end
     end

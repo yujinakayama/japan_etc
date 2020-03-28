@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
+require 'addressable'
+
 module JapanETC
   module DatabaseProvider
     class Base
-      def self.inherited(subclass)
-        all << subclass
+      def source_url
+        raise NotImplementedError
       end
 
-      def self.all
-        @all ||= []
+      def source_id
+        @source_id ||= Addressable::URI.parse(source_url).domain
       end
 
       def fetch_tollbooths

@@ -9,7 +9,9 @@ module JapanETC
   module DatabaseProvider
     # https://www.shutoko.jp/fee/tollbooth/
     class MetropolitanExpressway < Base
-      URL = 'https://www.shutoko.jp/fee/tollbooth/~/media/pdf/customer/fee/tollbooth/code190201.csv/'
+      def source_url
+        'https://www.shutoko.jp/fee/tollbooth/~/media/pdf/customer/fee/tollbooth/code200322.csv/'
+      end
 
       OPPOSITE_DIRECTIONS = {
         '上' => '下',
@@ -59,7 +61,8 @@ module JapanETC
             road_name: '首都高速道路',
             route_name: row[2],
             name: row[3],
-            entrance_or_exit: EntranceOrExit.from(row[4])
+            entrance_or_exit: EntranceOrExit.from(row[4]),
+            source: source_id
           )
         end
       end
@@ -73,7 +76,7 @@ module JapanETC
       end
 
       def shiftjis_csv
-        response = Faraday.get(URL)
+        response = Faraday.get(source_url)
         response.body.force_encoding(Encoding::Shift_JIS)
       end
     end

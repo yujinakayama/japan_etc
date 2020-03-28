@@ -8,32 +8,35 @@ require 'pdf-reader'
 
 module JapanETC
   module DatabaseProvider
-    class NEXCO < Base
+    class BaseNEXCO < Base
       include Util
 
-      # NEXCO East
-      # URL = 'https://www.driveplaza.com/traffic/tolls_etc/etc_area/pdf/all01.pdf'
-
-      # NEXCO Central
-      # NOTE: This PDF has issues with text encoding
-      # URL = 'https://highwaypost.c-nexco.co.jp/faq/etc/use/documents/etcriyoukanouic.pdf'
-
-      # NEXCO West
-      URL = 'https://www.w-nexco.co.jp/etc/maintenance/pdfs/list01.pdf'
-
       WHITESPACE = /[\s　]/.freeze
+
+      ROAD_NAME_PATTERN = /
+        (?<road_name>
+          [^#{WHITESPACE}\d（【]
+          (?:
+            (?:
+              (?<!連絡道)
+              #{WHITESPACE}
+            )?
+            [^#{WHITESPACE}]
+          )*
+        )
+      /x.freeze
 
       TOLLBOOTH_LINE_PATTERN = /
         \A
         (?:
-          #{WHITESPACE}{,10}(?<road_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)#{WHITESPACE}+
+          #{WHITESPACE}{,10}#{ROAD_NAME_PATTERN}#{WHITESPACE}+
           |
           #{WHITESPACE}{,10}(?:[（【][^#{WHITESPACE}]+)#{WHITESPACE}+ # Obsolete road name
           |
           #{WHITESPACE}{10,}
         )
         (?:
-          (?<tollbooth_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)
+          (?<tollbooth_name>[^#{WHITESPACE}\d（【](?:#{WHITESPACE}?[^#{WHITESPACE}])*)
           #{WHITESPACE}+
         )?
         (?<identifiers>\d{2}#{WHITESPACE}+\d{3}\b.*?)
@@ -50,7 +53,15 @@ module JapanETC
       attr_reader :current_road_name, :current_route_name, :current_tollbooth_name
 
       def fetch_tollbooths
-        lines.flat_map { |line| parse_line(line) }.compact
+        tollbooths = []
+
+        lines.each do |line|
+          break if line.include?('【更新リスト】')
+
+          tollbooths << parse_line(line)
+        end
+
+        tollbooths.flatten.compact
       end
 
       def parse_line(line)
@@ -58,8 +69,8 @@ module JapanETC
         return unless match
 
         if match[:road_name]
-          @current_road_name, @current_route_name =
-            extract_route_name_from_road_name(match[:road_name])
+          road_name = remove_whitespaces(normalize(match[:road_name]))
+          @current_road_name, @current_route_name = extract_route_name_from_road_name(road_name)
           @current_road_name = canonicalize(@current_road_name)
         end
 
@@ -74,7 +85,8 @@ module JapanETC
             road_name: current_road_name,
             route_name: current_route_name,
             name: current_tollbooth_name,
-            note: match[:note]
+            note: match[:note],
+            source: source_id
           )
         end
       end
@@ -97,7 +109,7 @@ module JapanETC
       end
 
       def pdf
-        response = Faraday.get(URL)
+        response = Faraday.get(source_url)
         PDF::Reader.new(StringIO.new(response.body))
       end
     end

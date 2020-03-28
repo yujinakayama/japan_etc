@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
-require 'japan_etc/database_provider'
+require 'japan_etc/database_provider/hanshin_expressway'
+require 'japan_etc/database_provider/metropolitan_expressway'
+require 'japan_etc/database_provider/nagoya_expressway'
+require 'japan_etc/database_provider/nexco_central'
+require 'japan_etc/database_provider/nexco_east'
+require 'japan_etc/database_provider/nexco_west'
+require 'japan_etc/database_provider/past_database'
 require 'csv'
 
 module JapanETC
@@ -13,6 +19,17 @@ module JapanETC
       direction
       entrance_or_exit
       notes
+      source
+    ].freeze
+
+    PROVIDER_CLASSES = [
+      DatabaseProvider::HanshinExpressway,
+      DatabaseProvider::MetropolitanExpressway,
+      DatabaseProvider::NagoyaExpressway,
+      DatabaseProvider::NEXCOCentral,
+      DatabaseProvider::NEXCOEast,
+      DatabaseProvider::NEXCOWest,
+      DatabaseProvider::PastDatabase
     ].freeze
 
     def roads
@@ -31,7 +48,7 @@ module JapanETC
     end
 
     def providers
-      DatabaseProvider::Base.all.map(&:new)
+      PROVIDER_CLASSES.map(&:new)
     end
   end
 end

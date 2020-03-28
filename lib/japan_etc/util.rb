@@ -7,13 +7,19 @@ module JapanETC
     def normalize(string)
       return nil unless string
 
-      convert_fullwidth_characters_to_halfwidth(string).strip
+      convert_fullwidth_characters_to_halfwidth(string)
     end
 
     def convert_fullwidth_characters_to_halfwidth(string)
       return nil unless string
 
       string.tr('　Ａ-Ｚａ-ｚ０-９', ' A-Za-z0-9')
+    end
+
+    def remove_whitespaces(string)
+      return nil unless string
+
+      string.tr(' ', '')
     end
 
     def convert_to_integer(object)

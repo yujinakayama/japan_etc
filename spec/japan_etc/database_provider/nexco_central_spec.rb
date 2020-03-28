@@ -109,6 +109,16 @@ module JapanETC
           name: '平塚本線'
         )
       end
+
+      pending 'handles strange unextractable tollbooth numbers' do
+        expect(find_tollbooth(1, 131)).to have_attributes(
+          road: an_object_having_attributes(
+            name: '名古屋第二環状自動車道',
+            route_name: nil
+          ),
+          name: '名二環名古屋'
+        )
+      end
     end
   end
 end

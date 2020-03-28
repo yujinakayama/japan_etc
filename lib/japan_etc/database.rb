@@ -6,6 +6,7 @@ require 'japan_etc/database_provider/nagoya_expressway'
 require 'japan_etc/database_provider/nexco_central'
 require 'japan_etc/database_provider/nexco_east'
 require 'japan_etc/database_provider/nexco_west'
+require 'japan_etc/database_provider/past_database'
 require 'csv'
 
 module JapanETC
@@ -27,7 +28,8 @@ module JapanETC
       DatabaseProvider::NagoyaExpressway,
       DatabaseProvider::NEXCOCentral,
       DatabaseProvider::NEXCOEast,
-      DatabaseProvider::NEXCOWest
+      DatabaseProvider::NEXCOWest,
+      DatabaseProvider::PastDatabase
     ].freeze
 
     def roads

@@ -11,7 +11,8 @@ module JapanETC
     include Comparable
     include Util
 
-    attr_accessor :identifier, :road, :name, :entrance_or_exit, :direction, :notes, :source
+    attr_accessor :identifier, :road, :name, :entrance_or_exit, :direction, :notes,
+                  :source, :priority
 
     def self.create(
       road_number:,
@@ -22,7 +23,8 @@ module JapanETC
       direction: nil,
       entrance_or_exit: nil,
       note: nil,
-      source: nil
+      source: nil,
+      priority: 0
     )
       identifier = Identifier.new(road_number, tollbooth_number)
       road = Road.new(road_name, route_name)
@@ -34,11 +36,21 @@ module JapanETC
         direction: direction,
         entrance_or_exit: entrance_or_exit,
         note: note,
-        source: source
+        source: source,
+        priority: priority
       )
     end
 
-    def initialize(identifier:, road:, name:, direction:, entrance_or_exit:, note:, source:)
+    def initialize(
+      identifier:,
+      road:,
+      name:,
+      direction:,
+      entrance_or_exit:,
+      note:,
+      source:,
+      priority:
+    )
       raise ValidationError if identifier.nil? || road.nil? || name.nil?
 
       @identifier = identifier
@@ -49,6 +61,7 @@ module JapanETC
       @notes = []
       notes << normalize(note) if note
       @source = source
+      @priority = priority
 
       normalize!
     end
@@ -71,6 +84,9 @@ module JapanETC
     def <=>(other)
       result = identifier <=> other.identifier
       return result unless result.zero?
+
+      result = priority <=> other.priority
+      return -result unless result.zero? # Tollbooth with higher priority comes first
 
       return -1 if !obsolete? && other.obsolete?
       return 1 if obsolete? && !other.obsolete?
@@ -216,6 +232,10 @@ module JapanETC
     Identifier = Struct.new(:road_number, :tollbooth_number) do
       include Comparable
       include Util
+
+      def self.from(string)
+        new(*string.split('-'))
+      end
 
       def initialize(road_number, tollbooth_number)
         road_number = convert_to_integer(road_number)

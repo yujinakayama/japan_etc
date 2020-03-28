@@ -44,7 +44,15 @@ module JapanETC
       end
 
       def fetch_tollbooths
-        lines.flat_map { |line| parse_line(line) }.compact
+        tollbooths = []
+
+        lines.each do |line|
+          break if line.include?('【更新リスト】')
+
+          tollbooths << parse_line(line)
+        end
+
+        tollbooths.flatten.compact
       end
 
       def parse_line(line)

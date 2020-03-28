@@ -10,7 +10,7 @@ module JapanETC
     # https://www.shutoko.jp/fee/tollbooth/
     class MetropolitanExpressway < Base
       def source_url
-        'https://www.shutoko.jp/fee/tollbooth/~/media/pdf/customer/fee/tollbooth/code190201.csv/'
+        'https://www.shutoko.jp/fee/tollbooth/~/media/pdf/customer/fee/tollbooth/code200322.csv/'
       end
 
       OPPOSITE_DIRECTIONS = {

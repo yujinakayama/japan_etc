@@ -8,18 +8,8 @@ require 'pdf-reader'
 
 module JapanETC
   module DatabaseProvider
-    class NEXCO < Base
+    class BaseNEXCO < Base
       include Util
-
-      # NEXCO East
-      # URL = 'https://www.driveplaza.com/traffic/tolls_etc/etc_area/pdf/all01.pdf'
-
-      # NEXCO Central
-      # NOTE: This PDF has issues with text encoding
-      # URL = 'https://highwaypost.c-nexco.co.jp/faq/etc/use/documents/etcriyoukanouic.pdf'
-
-      # NEXCO West
-      URL = 'https://www.w-nexco.co.jp/etc/maintenance/pdfs/list01.pdf'
 
       WHITESPACE = /[\s　]/.freeze
 
@@ -48,6 +38,10 @@ module JapanETC
       IDENTIFIER_PATTERN = /\b(\d{2})#{WHITESPACE}+(\d{3})\b/.freeze
 
       attr_reader :current_road_name, :current_route_name, :current_tollbooth_name
+
+      def url
+        raise NotImplementedError
+      end
 
       def fetch_tollbooths
         lines.flat_map { |line| parse_line(line) }.compact
@@ -97,7 +91,7 @@ module JapanETC
       end
 
       def pdf
-        response = Faraday.get(URL)
+        response = Faraday.get(url)
         PDF::Reader.new(StringIO.new(response.body))
       end
     end

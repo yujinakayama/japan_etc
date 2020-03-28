@@ -18,6 +18,7 @@ module JapanETC
       direction
       entrance_or_exit
       notes
+      source
     ].freeze
 
     PROVIDER_CLASSES = [

@@ -52,10 +52,6 @@ module JapanETC
 
       attr_reader :current_road_name, :current_route_name, :current_tollbooth_name
 
-      def url
-        raise NotImplementedError
-      end
-
       def fetch_tollbooths
         tollbooths = []
 
@@ -89,7 +85,8 @@ module JapanETC
             road_name: current_road_name,
             route_name: current_route_name,
             name: current_tollbooth_name,
-            note: match[:note]
+            note: match[:note],
+            source: source_id
           )
         end
       end
@@ -112,7 +109,7 @@ module JapanETC
       end
 
       def pdf
-        response = Faraday.get(url)
+        response = Faraday.get(source_url)
         PDF::Reader.new(StringIO.new(response.body))
       end
     end

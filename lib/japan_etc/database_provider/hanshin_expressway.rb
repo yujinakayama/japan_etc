@@ -9,7 +9,9 @@ module JapanETC
   module DatabaseProvider
     # https://www.hanshin-exp.co.jp/drivers/ryoukin/etc_ryokinsyo/
     class HanshinExpressway < Base
-      URL = 'https://www.hanshin-exp.co.jp/drivers/ryoukin/files/code_20170516.xls'
+      def source_url
+        'https://www.hanshin-exp.co.jp/drivers/ryoukin/files/code_20170516.xls'
+      end
 
       def fetch_tollbooths
         rows.flat_map do |row|
@@ -28,7 +30,8 @@ module JapanETC
           road_name: '阪神高速道路',
           route_name: route_name,
           name: tollbooth_name,
-          note: note
+          note: note,
+          source: source_id
         )
 
         remove_redundant_name_suffix!(tollbooth)
@@ -50,7 +53,7 @@ module JapanETC
       end
 
       def workbook
-        response = Faraday.get(URL)
+        response = Faraday.get(source_url)
         Spreadsheet.open(StringIO.new(response.body))
       end
     end

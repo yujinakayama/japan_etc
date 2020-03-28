@@ -11,7 +11,7 @@ module JapanETC
     include Comparable
     include Util
 
-    attr_accessor :identifier, :road, :name, :entrance_or_exit, :direction, :notes
+    attr_accessor :identifier, :road, :name, :entrance_or_exit, :direction, :notes, :source
 
     def self.create(
       road_number:,
@@ -21,14 +21,24 @@ module JapanETC
       name:,
       direction: nil,
       entrance_or_exit: nil,
-      note: nil
+      note: nil,
+      source: nil
     )
       identifier = Identifier.new(road_number, tollbooth_number)
       road = Road.new(road_name, route_name)
-      new(identifier, road, name, direction, entrance_or_exit, note)
+
+      new(
+        identifier: identifier,
+        road: road,
+        name: name,
+        direction: direction,
+        entrance_or_exit: entrance_or_exit,
+        note: note,
+        source: source
+      )
     end
 
-    def initialize(identifier, road, name, direction = nil, entrance_or_exit = nil, note = nil)
+    def initialize(identifier:, road:, name:, direction:, entrance_or_exit:, note:, source:)
       raise ValidationError if identifier.nil? || road.nil? || name.nil?
 
       @identifier = identifier
@@ -38,6 +48,7 @@ module JapanETC
       @entrance_or_exit = entrance_or_exit
       @notes = []
       notes << normalize(note) if note
+      @source = source
 
       normalize!
     end
@@ -64,7 +75,7 @@ module JapanETC
       return -1 if !obsolete? && other.obsolete?
       return 1 if obsolete? && !other.obsolete?
 
-      [:road, :name].each do |attribute|
+      %i[road name source].each do |attribute|
         result = send(attribute) <=> other.send(attribute)
         return result unless result.zero?
       end
@@ -79,7 +90,8 @@ module JapanETC
         name,
         direction,
         entrance_or_exit,
-        notes.empty? ? nil : notes.join(' ')
+        notes.empty? ? nil : notes.join(' '),
+        source
       ].flatten
     end
 

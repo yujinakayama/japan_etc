@@ -13,17 +13,30 @@ module JapanETC
 
       WHITESPACE = /[\s　]/.freeze
 
+      ROAD_NAME_PATTERN = /
+        (?<road_name>
+          [^#{WHITESPACE}\d（【]
+          (?:
+            (?:
+              (?<!連絡道)
+              #{WHITESPACE}
+            )?
+            [^#{WHITESPACE}]
+          )*
+        )
+      /x.freeze
+
       TOLLBOOTH_LINE_PATTERN = /
         \A
         (?:
-          #{WHITESPACE}{,10}(?<road_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)#{WHITESPACE}+
+          #{WHITESPACE}{,10}#{ROAD_NAME_PATTERN}#{WHITESPACE}+
           |
           #{WHITESPACE}{,10}(?:[（【][^#{WHITESPACE}]+)#{WHITESPACE}+ # Obsolete road name
           |
           #{WHITESPACE}{10,}
         )
         (?:
-          (?<tollbooth_name>[^#{WHITESPACE}\d（【][^#{WHITESPACE}]*)
+          (?<tollbooth_name>[^#{WHITESPACE}\d（【](?:#{WHITESPACE}?[^#{WHITESPACE}])*)
           #{WHITESPACE}+
         )?
         (?<identifiers>\d{2}#{WHITESPACE}+\d{3}\b.*?)
@@ -60,8 +73,8 @@ module JapanETC
         return unless match
 
         if match[:road_name]
-          @current_road_name, @current_route_name =
-            extract_route_name_from_road_name(match[:road_name])
+          road_name = remove_whitespaces(normalize(match[:road_name]))
+          @current_road_name, @current_route_name = extract_route_name_from_road_name(road_name)
           @current_road_name = canonicalize(@current_road_name)
         end
 

@@ -23,7 +23,7 @@ module JapanETC
     def initialize(name, route_name = nil)
       raise ValidationError, '#name cannot be nil' if name.nil?
 
-      super(normalize(name), normalize(route_name))
+      super(remove_whitespaces(normalize(name)), remove_whitespaces(normalize(route_name)))
     end
 
     def abbreviation

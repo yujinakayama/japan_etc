@@ -33,7 +33,7 @@ module JapanETC
 
       @identifier = identifier
       @road = road
-      @name = normalize(name)
+      @name = remove_whitespaces(normalize(name))
       @direction = direction
       @entrance_or_exit = entrance_or_exit
       @notes = []

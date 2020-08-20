@@ -110,7 +110,7 @@ module JapanETC
         )
       end
 
-      pending 'handles strange unextractable tollbooth numbers' do
+      it 'handles strange unextractable tollbooth numbers' do
         expect(find_tollbooth(1, 131)).to have_attributes(
           road: an_object_having_attributes(
             name: '名古屋第二環状自動車道',

@@ -29,16 +29,20 @@ module JapanETC
       TOLLBOOTH_LINE_PATTERN = /
         \A
         (?:
-          #{WHITESPACE}{,10}#{ROAD_NAME_PATTERN}#{WHITESPACE}+
-          |
-          #{WHITESPACE}{,10}(?:[（【][^#{WHITESPACE}]+)#{WHITESPACE}+ # Obsolete road name
+          (?:
+            #{WHITESPACE}{,10}#{ROAD_NAME_PATTERN}#{WHITESPACE}+
+            |
+            #{WHITESPACE}{,10}(?:[（【][^#{WHITESPACE}]+)#{WHITESPACE}+ # Obsolete road name
+            |
+            #{WHITESPACE}{10,}
+          )
+          (?:
+            (?<tollbooth_name>[^#{WHITESPACE}\d（【](?:#{WHITESPACE}?[^#{WHITESPACE}])*)
+            #{WHITESPACE}+
+          )
           |
           #{WHITESPACE}{10,}
         )
-        (?:
-          (?<tollbooth_name>[^#{WHITESPACE}\d（【](?:#{WHITESPACE}?[^#{WHITESPACE}])*)
-          #{WHITESPACE}+
-        )?
         (?<identifiers>\d{2}#{WHITESPACE}+\d{3}\b.*?)
         (?:
           ※

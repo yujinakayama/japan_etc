@@ -10,7 +10,7 @@ module JapanETC
     # https://www.hanshin-exp.co.jp/drivers/ryoukin/etc_ryokinsyo/
     class HanshinExpressway < Base
       def source_url
-        'https://www.hanshin-exp.co.jp/drivers/ryoukin/files/code_20170516.xls'
+        'https://www.hanshin-exp.co.jp/drivers/ryoukin/files/code_20200329.xls'
       end
 
       def fetch_tollbooths

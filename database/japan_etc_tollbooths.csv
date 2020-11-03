@@ -471,6 +471,9 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 02-104,山陰自動車道,,斐川,,,,c-nexco.co.jp
 02-105,山陰自動車道,,斐川本線,,,,c-nexco.co.jp
 02-106,松江自動車道,,三刀屋木次,,,,c-nexco.co.jp
+02-201,山陰自動車道,,松江玉造,,,,w-nexco.co.jp
+02-205,山陰自動車道,,斐川本線,,,,w-nexco.co.jp
+02-206,松江自動車道,,三刀屋木次,,,,w-nexco.co.jp
 02-219,名神高速道路,,豊中,,,合併,c-nexco.co.jp
 02-225,山陽自動車道,,都市高速広島東,,,,c-nexco.co.jp
 02-250,播但連絡道路,,花田,,,均一,c-nexco.co.jp
@@ -763,6 +766,7 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 04-081,首都圏中央連絡自動車道,,境古河,,,,c-nexco.co.jp
 04-082,首都圏中央連絡自動車道,,坂東,,,,c-nexco.co.jp
 04-083,首都圏中央連絡自動車道,,常総,,,,c-nexco.co.jp
+04-088,首都圏中央連絡自動車道,,厚木PAスマート,,,,c-nexco.co.jp
 04-124,常磐自動車道,,浪江,,,,c-nexco.co.jp
 04-125,常磐自動車道,,南相馬,,,,c-nexco.co.jp
 04-126,常磐自動車道,,相馬,,,,c-nexco.co.jp
@@ -1538,6 +1542,8 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 09-235,広島高速道路,3号線,吉島,,出口,,c-nexco.co.jp
 09-236,広島高速道路,3号線,都市高速観音,,入口,,c-nexco.co.jp
 09-237,広島高速道路,3号線,都市高速観音,,出口,,c-nexco.co.jp
+09-240,広島高速道路,4号線,沼田,上り,,,c-nexco.co.jp
+09-241,広島高速道路,4号線,沼田,下り,,,c-nexco.co.jp
 09-260,臨港道路海田大橋,,海田広島,,入口,,c-nexco.co.jp
 09-261,臨港道路海田大橋,,海田広島,,出口,,c-nexco.co.jp
 09-262,臨港道路海田大橋,,海田,下り,出口,海田大橋,c-nexco.co.jp

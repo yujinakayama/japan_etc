@@ -793,6 +793,7 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 04-434,中央自動車道,,小黒川スマート,,,,c-nexco.co.jp
 04-435,中央自動車道,,駒ヶ岳スマート,,,,c-nexco.co.jp
 04-437,中央自動車道,,談合坂スマート,,,,c-nexco.co.jp
+04-442,北陸自動車道,,上市スマート,,,,c-nexco.co.jp
 04-448,上信越自動車道,,小布施スマート,,,,c-nexco.co.jp
 04-462,中部横断自動車道,,増穂,,,,c-nexco.co.jp
 04-463,中部横断自動車道,,富士川本線,,,,c-nexco.co.jp
@@ -933,6 +934,7 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 05-020,道央自動車道,,大沼公園本線,,,,c-nexco.co.jp
 05-021,道央自動車道,,新千歳空港,,,,c-nexco.co.jp
 05-022,道央自動車道,,輪厚スマート,,,,c-nexco.co.jp
+05-023,道央自動車道,,苫小牧中央,,,,c-nexco.co.jp
 05-100,道央自動車道,,札幌本線,上り,,,c-nexco.co.jp
 05-101,道央自動車道,,札幌,,,,c-nexco.co.jp
 05-102,道央自動車道,,江別西,,,,c-nexco.co.jp
@@ -2498,6 +2500,7 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 23-004,第二京阪道路,,城南宮北,,,,c-nexco.co.jp
 23-005,第二京阪道路,,上鳥羽,,,,c-nexco.co.jp
 23-006,第二京阪道路,,鴨川西,,,,c-nexco.co.jp
+23-007,第二京阪道路,,鴨川西本線,,,,c-nexco.co.jp
 23-008,第二京阪道路,,山科,,,,c-nexco.co.jp
 24-051,近畿自動車道,,吹田本線,,,,c-nexco.co.jp
 24-052,近畿自動車道,,摂津北,,,,c-nexco.co.jp

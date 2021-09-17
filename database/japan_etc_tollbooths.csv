@@ -2726,17 +2726,17 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-242,名古屋高速道路,3号大高線,笠寺,,出口,,nagoya-expressway.or.jp
 41-244,名古屋高速道路,3号大高線,大高,,出口,,nagoya-expressway.or.jp
 41-246,名古屋高速道路,3号大高線,名四連絡路,,出口,,nagoya-expressway.or.jp
-41-247,名古屋高速道路,3号大高線,名古屋南至名二環,,,,nagoya-expressway.or.jp
-41-248,名古屋高速道路,3号大高線,名古屋南至湾岸,,,,nagoya-expressway.or.jp
+41-247,名古屋高速道路,3号大高線,名古屋南 名二環方面,,,,nagoya-expressway.or.jp
+41-248,名古屋高速道路,3号大高線,名古屋南 湾岸方面,,,,nagoya-expressway.or.jp
 41-251,名古屋高速道路,3号大高線,高辻,,出口,,nagoya-expressway.or.jp
 41-252,名古屋高速道路,3号大高線,呼続,,出口,,nagoya-expressway.or.jp
 41-253,名古屋高速道路,3号大高線,星崎,,入口,,PastDatabase
 41-254,名古屋高速道路,3号大高線,大高,,入口,,nagoya-expressway.or.jp
-41-256,名古屋高速道路,3号大高線,名四連絡至星崎,,,,nagoya-expressway.or.jp
-41-281,名古屋高速道路,3号大高線,伊勢湾岸至星崎,,,,nagoya-expressway.or.jp
-41-282,名古屋高速道路,3号大高線,名二環至星崎,,,,nagoya-expressway.or.jp
-41-283,名古屋高速道路,3号大高線,知多連至星崎,,,,nagoya-expressway.or.jp
-41-291,名古屋高速道路,3号大高線,入路不明至星崎,,,,nagoya-expressway.or.jp
+41-256,名古屋高速道路,3号大高線,名四連絡 星崎方面,,,,nagoya-expressway.or.jp
+41-281,名古屋高速道路,3号大高線,伊勢湾岸 星崎方面,,,,nagoya-expressway.or.jp
+41-282,名古屋高速道路,3号大高線,名二環 星崎方面,,,,nagoya-expressway.or.jp
+41-283,名古屋高速道路,3号大高線,知多連 星崎方面,,,,nagoya-expressway.or.jp
+41-291,名古屋高速道路,3号大高線,入路不明 星崎方面,,,,nagoya-expressway.or.jp
 41-301,名古屋高速道路,4号東海線,山王,,,,nagoya-expressway.or.jp
 41-302,名古屋高速道路,4号東海線,六番南,,,,nagoya-expressway.or.jp
 41-303,名古屋高速道路,4号東海線,木場,,,,nagoya-expressway.or.jp
@@ -2749,7 +2749,7 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-342,名古屋高速道路,4号東海線,港明,,出口,,nagoya-expressway.or.jp
 41-343,名古屋高速道路,4号東海線,船見,,出口,,nagoya-expressway.or.jp
 41-344,名古屋高速道路,4号東海線,東海新宝,,出口,,nagoya-expressway.or.jp
-41-345,名古屋高速道路,4号東海線,東海至西知多,,,,nagoya-expressway.or.jp
+41-345,名古屋高速道路,4号東海線,東海 西知多方面,,,,nagoya-expressway.or.jp
 41-346,名古屋高速道路,4号東海線,東海JCT,,,,PastDatabase
 41-347,名古屋高速道路,4号東海線,東海JCT,,,,PastDatabase
 41-351,名古屋高速道路,4号東海線,尾頭橋,,出口,,nagoya-expressway.or.jp
@@ -2758,12 +2758,12 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-356,名古屋高速道路,4号東海線,東海湾岸,,入口,,nagoya-expressway.or.jp
 41-402,名古屋高速道路,5号万場線,烏森,,,,nagoya-expressway.or.jp
 41-411,名古屋高速道路,5号万場線,黄金,,,,nagoya-expressway.or.jp
-41-413,名古屋高速道路,5号万場線,千音寺東名阪至千音寺,,,,nagoya-expressway.or.jp
-41-414,名古屋高速道路,5号万場線,千音寺東名阪至千音寺,,,,nagoya-expressway.or.jp
+41-413,名古屋高速道路,5号万場線,千音寺東名阪 千音寺方面,,,,nagoya-expressway.or.jp
+41-414,名古屋高速道路,5号万場線,千音寺東名阪 千音寺方面,,,,nagoya-expressway.or.jp
 41-441,名古屋高速道路,5号万場線,黄金,,出口,,nagoya-expressway.or.jp
 41-443,名古屋高速道路,5号万場線,千音寺,,出口,,nagoya-expressway.or.jp
-41-444,名古屋高速道路,5号万場線,名古屋西至名二環,,,,nagoya-expressway.or.jp
-41-445,名古屋高速道路,5号万場線,名古屋西至東名阪,,,,nagoya-expressway.or.jp
+41-444,名古屋高速道路,5号万場線,名古屋西 名二環方面,,,,nagoya-expressway.or.jp
+41-445,名古屋高速道路,5号万場線,名古屋西 東名阪方面,,,,nagoya-expressway.or.jp
 41-451,名古屋高速道路,5号万場線,烏森,,出口,,nagoya-expressway.or.jp
 41-453,名古屋高速道路,5号万場線,千音寺,,入口,,nagoya-expressway.or.jp
 41-501,名古屋高速道路,6号清須線,明道町,,,,PastDatabase
@@ -2779,7 +2779,7 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-534,名古屋高速道路,16号一宮線,一宮中,,,,nagoya-expressway.or.jp
 41-541,名古屋高速道路,6号清須線,庄内通,,出口,,nagoya-expressway.or.jp
 41-542,名古屋高速道路,6号清須線,清須,,出口,,nagoya-expressway.or.jp
-41-544,名古屋高速道路,6号清須線,清洲至名二環,,,,nagoya-expressway.or.jp
+41-544,名古屋高速道路,6号清須線,清洲 名二環方面,,,,nagoya-expressway.or.jp
 41-551,名古屋高速道路,6号清須線,明道町,,出口,,PastDatabase
 41-552,名古屋高速道路,6号清須線,鳥見町,,出口,,nagoya-expressway.or.jp
 41-553,名古屋高速道路,6号清須線,清須,,入口,,nagoya-expressway.or.jp
@@ -2788,15 +2788,15 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-563,名古屋高速道路,16号一宮線,一宮西春,,入口,,nagoya-expressway.or.jp
 41-564,名古屋高速道路,16号一宮線,一宮IC,,出口,,nagoya-expressway.or.jp
 41-570,名古屋高速道路,6号清須線,清洲JCT,,,,PastDatabase
-41-571,名古屋高速道路,16号一宮線,清洲至名二環,,,,nagoya-expressway.or.jp
+41-571,名古屋高速道路,16号一宮線,清洲 名二環方面,,,,nagoya-expressway.or.jp
 41-572,名古屋高速道路,16号一宮線,春日,,出口,,nagoya-expressway.or.jp
 41-573,名古屋高速道路,16号一宮線,一宮西春,,出口,,nagoya-expressway.or.jp
 41-574,名古屋高速道路,16号一宮線,一宮IC,,入口,,nagoya-expressway.or.jp
-41-581,名古屋高速道路,6号清須線,名二環内回至清須,,,,nagoya-expressway.or.jp
-41-582,名古屋高速道路,16号一宮線,名二環内回至清洲,,,,nagoya-expressway.or.jp
-41-583,名古屋高速道路,16号一宮線,名二環外回至清須,,,,nagoya-expressway.or.jp
-41-584,名古屋高速道路,6号清須線,名二環外回至清洲,,,,nagoya-expressway.or.jp
-41-591,名古屋高速道路,6号清須線,入路不明至清須,,,,nagoya-expressway.or.jp
+41-581,名古屋高速道路,6号清須線,名二環内回 清須方面,,,,nagoya-expressway.or.jp
+41-582,名古屋高速道路,16号一宮線,名二環内回 清洲方面,,,,nagoya-expressway.or.jp
+41-583,名古屋高速道路,16号一宮線,名二環外回 清須方面,,,,nagoya-expressway.or.jp
+41-584,名古屋高速道路,6号清須線,名二環外回 清洲方面,,,,nagoya-expressway.or.jp
+41-591,名古屋高速道路,6号清須線,入路不明 清須方面,,,,nagoya-expressway.or.jp
 41-601,名古屋高速道路,1号楠線,東片端,,,,nagoya-expressway.or.jp
 41-602,名古屋高速道路,1号楠線,黒川,,,,nagoya-expressway.or.jp
 41-611,名古屋高速道路,1号楠線,楠,,,,nagoya-expressway.or.jp
@@ -2812,8 +2812,8 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-634,名古屋高速道路,11号小牧線,小牧北,,,,nagoya-expressway.or.jp
 41-641,名古屋高速道路,1号楠線,黒川,,出口,,nagoya-expressway.or.jp
 41-642,名古屋高速道路,1号楠線,楠,,出口,,nagoya-expressway.or.jp
-41-643,名古屋高速道路,1号楠線,楠至名二環内回,,,,nagoya-expressway.or.jp
-41-644,名古屋高速道路,1号楠線,楠至名二環外回,,,,nagoya-expressway.or.jp
+41-643,名古屋高速道路,1号楠線,楠 名二環内回方面,,,,nagoya-expressway.or.jp
+41-644,名古屋高速道路,1号楠線,楠 名二環外回方面,,,,nagoya-expressway.or.jp
 41-649,名古屋高速道路,1号楠線,黒川北,,入口,,PastDatabase
 41-659,名古屋高速道路,1号楠線,黒川南,,出口,,PastDatabase
 41-660,名古屋高速道路,1号楠線,楠JCT,,,,PastDatabase
@@ -2821,14 +2821,14 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-663,名古屋高速道路,11号小牧線,小牧北,,出口,,nagoya-expressway.or.jp
 41-664,名古屋高速道路,11号小牧線,小牧IC,,出口,,nagoya-expressway.or.jp
 41-670,名古屋高速道路,1号楠線,楠JCT,,,,PastDatabase
-41-671,名古屋高速道路,11号小牧線,楠至名二環,,,,nagoya-expressway.or.jp
+41-671,名古屋高速道路,11号小牧線,楠 名二環方面,,,,nagoya-expressway.or.jp
 41-673,名古屋高速道路,11号小牧線,豊山北,,出口,,nagoya-expressway.or.jp
 41-674,名古屋高速道路,11号小牧線,堀の内,,出口,,nagoya-expressway.or.jp
-41-681,名古屋高速道路,1号楠線,名二環内回至楠,,,,nagoya-expressway.or.jp
-41-682,名古屋高速道路,11号小牧線,名二環内回至楠,,,,nagoya-expressway.or.jp
-41-683,名古屋高速道路,1号楠線,名二環外回至楠,,,,nagoya-expressway.or.jp
-41-684,名古屋高速道路,11号小牧線,名二環外回至楠,,,,nagoya-expressway.or.jp
-41-691,名古屋高速道路,1号楠線,入路不明至楠,,,,nagoya-expressway.or.jp
+41-681,名古屋高速道路,1号楠線,名二環内回 楠方面,,,,nagoya-expressway.or.jp
+41-682,名古屋高速道路,11号小牧線,名二環内回 楠方面,,,,nagoya-expressway.or.jp
+41-683,名古屋高速道路,1号楠線,名二環外回 楠方面,,,,nagoya-expressway.or.jp
+41-684,名古屋高速道路,11号小牧線,名二環外回 楠方面,,,,nagoya-expressway.or.jp
+41-691,名古屋高速道路,1号楠線,入路不明 楠方面,,,,nagoya-expressway.or.jp
 41-701,名古屋高速道路,2号東山線,吹上西,,,,nagoya-expressway.or.jp
 41-702,名古屋高速道路,2号東山線,春岡,,,,nagoya-expressway.or.jp
 41-711,名古屋高速道路,2号東山線,吹上東,,,,nagoya-expressway.or.jp
@@ -2837,12 +2837,12 @@ tollbooth_id,road_name,route_name,tollbooth_name,direction,entrance_or_exit,note
 41-741,名古屋高速道路,2号東山線,吹上東,,出口,,nagoya-expressway.or.jp
 41-742,名古屋高速道路,2号東山線,四谷,,出口,,nagoya-expressway.or.jp
 41-743,名古屋高速道路,2号東山線,高針,,出口,,nagoya-expressway.or.jp
-41-744,名古屋高速道路,2号東山線,高針至名二環,,,,nagoya-expressway.or.jp
+41-744,名古屋高速道路,2号東山線,高針 名二環方面,,,,nagoya-expressway.or.jp
 41-751,名古屋高速道路,2号東山線,吹上西,,出口,,nagoya-expressway.or.jp
 41-752,名古屋高速道路,2号東山線,春岡,,出口,,nagoya-expressway.or.jp
 41-753,名古屋高速道路,2号東山線,高針,,入口,,nagoya-expressway.or.jp
-41-781,名古屋高速道路,2号東山線,名二環至高針,,,,nagoya-expressway.or.jp
-41-791,名古屋高速道路,2号東山線,入路不明至高針,,,,nagoya-expressway.or.jp
+41-781,名古屋高速道路,2号東山線,名二環 高針方面,,,,nagoya-expressway.or.jp
+41-791,名古屋高速道路,2号東山線,入路不明 高針方面,,,,nagoya-expressway.or.jp
 41-811,名古屋高速道路,2号東山線,白川,,,,nagoya-expressway.or.jp
 41-841,名古屋高速道路,2号東山線,白川,,出口,,nagoya-expressway.or.jp
 41-997,名古屋高速道路,その他,不明,,入口,,nagoya-expressway.or.jp

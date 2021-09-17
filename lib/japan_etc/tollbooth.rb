@@ -119,6 +119,7 @@ module JapanETC
 
     def normalize!
       extract_notes_from_name!
+      reformat_name!
       extract_direction_from_notes!
       extract_entrance_or_exit_from_notes!
       extract_direction_from_name!
@@ -151,6 +152,13 @@ module JapanETC
       name.sub!(/合併\z/) do |match|
         prepend_to_notes(match) unless notes.any? { |note| note.include?('合併') }
         ''
+      end
+    end
+
+    def reformat_name!
+      name.sub!(/(.+)至(.+)/) do
+        match = Regexp.last_match
+        "#{match[1]} #{match[2]}方面"
       end
     end
 
